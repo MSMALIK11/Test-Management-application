@@ -24,7 +24,7 @@ const MobileSideMenu = () => {
         return (
             <Drawer open={open} onOpenChange={setOpen} direction="right">
                 <DrawerTrigger asChild onClick={handleOpen}>
-                    <CiMenuFries className="ncursor-pointer nw-[36px] nh-[36px]  nrounded-md np-2 hover:nbg-secondary" />
+                    <CiMenuFries size={32} className="ncursor-pointer ntext-primary  nrounded-md nmr-4" />
                 </DrawerTrigger>
                 <DrawerContent>
                     <DrawerHeader className="text-left nrelation">
