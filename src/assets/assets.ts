@@ -1,0 +1,10 @@
+import BannarImage from './images/bannarbg.png'
+import googleIcon from './icons/google.svg'
+import detailsBannar from './images/detailsbg.svg'
+import profileImg from './images/profile.jpg'
+import brandLogo from './images/knowledgepluslogo.png'
+import totlaCourseIcon from './icons/totalcourse.svg'
+import totalEnrollIcon from './icons/totalenroll.svg'
+import totalSalesIcon from './icons/totalsale.svg'
+import totalStudentIcon from './icons/totalstudent.svg'
+export { totalStudentIcon, totalSalesIcon, totalEnrollIcon, totlaCourseIcon, BannarImage, googleIcon, detailsBannar, profileImg, brandLogo }

@@ -1,0 +1,359 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+:root{
+  --brand:#0D47D5;
+  --info:#073158;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: 400;
+  letter-spacing: 0.2px;
+  font-family: 'Lato', sans-serif;
+
+}
+body{
+  font-family: 'Lato',sans-serif;
+  height: 100vh;
+  /* background-color: hsl(var(--background));
+  color: hsl(var(--foreground)) */
+  color: white !important;
+ 
+}
+ul li span{
+  white-space: noWrap;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin: 0;
+  padding: 0;
+}
+.hero-animation{
+  background-image: linear-gradient(147.92deg,hsla(239,76%,53%,0.53) 10.41%, hsla(0,0%,100%,0) 89.25%);
+  animation:changeBackgroundColor 8s infinite alternate;
+}
+@keyframes  changeBackgroundColor{
+  0%,100%{
+  opacity: 1;
+  }
+  16.67%{
+  opacity: 0.9;
+  }
+  33.33%{
+    opacity: 0.8;
+  }
+  50%{
+    opacity: 0.8;
+  }
+  50%{
+    opacity: 0.6;
+  }
+  66.67%{
+    opacity: 0.6;
+  }
+  83.33%{
+    opacity: 0.6;
+  }
+  
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.activeClass{
+  background-color: var(--brand) !important;
+  color: #fff;
+}
+p,span{
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+ .title{
+ line-height: 60px;
+  
+}
+/* #header{
+position: absolute;
+top: 0;
+} */
+nav a{
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* nav a::before{
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 3px ;
+  background: blue;
+  left: 0;
+  bottom: 0;
+
+  transition: width 0.2s ease-in;
+} */
+/* nav a:hover::before{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 3px ;
+  background: blue;
+  left: 0;
+  bottom: 0;
+
+} */
+
+.crossLine{
+  width: 100%;
+  height:2px ;
+  background-color: #d4cece74;
+  position: relative;
+  margin: 20px 0;
+}
+.crossLine::before{
+  content: 'OR';
+  position: absolute;
+  left: 50%;
+  right: 50%;
+  bottom: -8px;
+  background: #fff;
+  height: 20px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50%);
+
+}
+.input-box:hover{
+  border:2px solid  #0D47D5;
+}
+.logo-title{
+font-weight: bold;
+letter-spacing: 0.4px;
+position: relative;
+
+}
+.logo-title:before{
+
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -6px;  
+ background-color: #0D47D5;
+  /* backdrop-filter: blur(10px); */
+  width: 5px;
+  height:100%;
+  /* transform: rotate(30deg); */
+  animation: animate 5s linear forwards infinite;
+}
+/* @keyframes animate {
+
+  0%{
+
+    transform: translateX(-100%);
+  }
+  100%{
+
+    transform: translateX(calc(100% + 10vw));
+  }
+} */
+
+#tab-card ul li{
+  transition: color 0.2s ease;
+ 
+}
+.marks span:nth-of-type(1){
+  background-color: green;
+  padding: 3px;
+  width:35px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  margin-top: 2px;
+}
+.marks span:nth-of-type(2){
+  background-color: rgb(227, 17, 17);
+  padding: 3px;
+  width:35px;
+  height: 17px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #fff;
+  margin-top: 2px;
+}
+.bannar-image{
+  width: 80%;
+  height: 70%;
+}
+/* Design Course Details page  */
+.courseDetails{
+  min-height: 40vh;
+  height: auto;
+  background: rgb(34,193,195);
+  background: linear-gradient(92.37deg, #D2F8FF 0%, rgba(223, 250, 255, .46) 100%);
+  /* background-image:url(./assets/images/detailsbg.svg) ;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat; */
+}
+
+
+.islive{
+  width:10px  ;
+  height: 10px ;
+  background: #0D47D5;
+  box-shadow: 0 0 10px #0D47D5;
+  display: block;
+  border-radius: 50%;
+  animation:blink 0.9s forwards linear infinite;
+}
+
+@keyframes blink{
+  0%{
+    opacity: 0;
+  }
+  100%{
+    opacity:1
+  }
+}
+#feature-card > div{
+  width: 100%;
+}
+#feature-card > div:not(:last-child) {
+  border-right: 3px solid #f3f2f1;
+
+  width: 100%;
+}
+
+.fancy-border{
+  border-radius: 100px 100px 0px 0px ;
+}
+#open-quiz-info-icon{
+  position: absolute;
+  top: 50%;
+  height:25px;
+  width: 25px;
+  left: -25px;
+  border-radius: 50%;
+  padding: 0 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#quiz-info-section{
+  padding: 24px 32px 24px 32px;
+}
+#mobile-menu-bar{
+  display: none;
+  position: absolute;
+  right: 0;
+  bottom: 20px;
+}
+#notification span{
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  display: inline-flex;
+  border-radius: 50%;
+  font-size: 12px;
+  padding: 1px;
+  width: 25px;
+  height:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+/* Responsive Bottom navigation bar  */
+#bottom-navigation{
+  display: none;
+
+}
+/* Mobile Responsive  */
+@media screen and (min-width:375px)  and (max-width:667px){
+  #header{
+    padding: 0 !important;
+  }
+  #prelims-container #tab-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #prelims-container h1{
+    text-align: center;
+  }
+  #course-details-container{
+    padding-bottom: 50px;
+  }
+  #course-details-container .course-banner-info{
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #options-container{
+    width: 100vw;
+  }
+  #quiz-left-content{
+    width: 100vw;
+  }
+  #desktop-info-menu{
+    display: none;
+  }
+  #mobile-menu-bar{
+    display: flex;
+  }
+  #quiz-button-container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    
+    padding: 0;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  #quiz-right-action-button{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #quiz-left-content{
+    width: 100% !important;
+    padding: 0 !important;
+  }
+  #sales-card{
+    width:88% !important;
+   
+  }
+}
+
+
+@media screen and (max-width: 430px)  {
+  #bottom-navigation{
+    display:block;
+  }
+  #home-bannar{
+    flex-direction: row-reverse;
+    flex-direction: column;
+
+  }
+  #home-bannar:nth-child(2){
+    order: 1;
+  },
+  #prelims-container h4{
+    background: red;
+  }
+}
+/* Design Admin Dashboard  */
+
