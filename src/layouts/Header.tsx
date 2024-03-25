@@ -16,7 +16,7 @@ const Header = () => {
                 <Logo />
                 <div className='nflex ngap-2 nitems-center'>
                     {/* <DarkMode /> */}
-                    <NavLink to="/dashboard/admin">
+                    <NavLink id='hide-sm' to="/dashboard/admin">
                         <Button size={'sm'} variant="secondary">Admin Dashboard</Button>
                     </NavLink>
                     <div id='hide-sm' className='hide-elem nflex nitems-center'>
