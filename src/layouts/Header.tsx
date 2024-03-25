@@ -15,14 +15,15 @@ const Header = () => {
             <div className='npy-2 lg:npx-12 nflex njustify-between  nitems-center'>
                 <Logo />
                 <div className='nflex ngap-2 nitems-center'>
+                    {/* <DarkMode /> */}
                     <NavLink to="/dashboard/admin">
-
                         <Button size={'sm'} variant="secondary">Admin Dashboard</Button>
                     </NavLink>
-                    {/* <DarkMode /> */}
-                    <Notification />
-                    <ProfileMenu />
-                    <Login />
+                    <div id='hide-sm' className='hide-elem nflex nitems-center'>
+                        <Notification />
+                        <ProfileMenu />
+                        <Login />
+                    </div>
                     <MobileSideMenu />
                 </div>
             </div>

@@ -35,7 +35,7 @@ const MobileSideMenu = () => {
                         <DrawerDescription className="nmt-6">
 
                             <ul className='nflex nflex-col ntext-left ngap-4 np-2'>
-                                <Each of={NavLinks} render={(item) => <NavLink key={item.name} to={item.path} className='ncursor-pointer ntext-forground nborder-b np-2 ntransform ntransition-transform nduration-300 hover:ntext-primary hover:nscale-110 hover:nbg-secondary '>{item.name}</NavLink>} />
+                                <Each of={NavLinks} render={(item) => <NavLink onClick={handleOpen} key={item.name} to={item.path} className='ncursor-pointer ntext-primary nborder-b np-2 ntransform ntransition-transform nduration-300 hover:ntext-primary hover:nscale-110 hover:nbg-secondary '>{item.name}</NavLink>} />
                             </ul>
 
                         </DrawerDescription>
