@@ -29,7 +29,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "nflex ncursor-default nselect-none nitems-center nrounded-sm npx-2 npy-1.5 ntext-sm noutline-none focus:nbg-accent data-[state=open]:nbg-accent",
+      "nflex ncursor-default  nselect-none nitems-center nrounded-sm npx-2 npy-1.5 ntext-sm noutline-none focus:nbg-accent data-[state=open]:nbg-accent",
       inset && "npl-8",
       className
     )}
@@ -67,7 +67,7 @@ const DropdownMenuContent = React.forwardRef<
       ref={ref}
       sideOffset={sideOffset}
       className={cn(
-        "nz-50 nmin-w-[8rem] noverflow-hidden nrounded-md nborder nbg-popover np-1 ntext-popover-foreground nshadow-md",
+        "nz-50 nmin-w-[8rem] nborder-secondary noverflow-hidden nrounded-md nborder nbg-popover np-1 ntext-popover-foreground nshadow-md",
         "data-[state=open]:nanimate-in data-[state=closed]:nanimate-out data-[state=closed]:nfade-out-0 data-[state=open]:nfade-in-0 data-[state=closed]:nzoom-out-95 data-[state=open]:nzoom-in-95 data-[side=bottom]:nslide-in-from-top-2 data-[side=left]:nslide-in-from-right-2 data-[side=right]:nslide-in-from-left-2 data-[side=top]:nslide-in-from-bottom-2",
         className
       )}

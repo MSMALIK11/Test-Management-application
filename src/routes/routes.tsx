@@ -1,12 +1,13 @@
+
 import { createBrowserRouter } from 'react-router-dom'
 import MainLayputs from '@/layouts/MainLayputs'
 import Prelims from '@/pages/Prelims'
 import Quize from '@/pages/Quize'
 import CourseDetails from '@/pages/CourseDetails'
 import HomePage from '@/pages/HomePage'
-import DashboardLayouts from '@/layouts/DashboardLayouts'
-import MainDashboard from '@/Dashboard/MainDashboard'
-import AddNewCourse from '@/Dashboard/AddNewCourse'
+import { userRoutes } from './userRoutes'
+import { adminRoutes } from './adminRoutes'
+import { publicRoutes } from './publicRoutes'
 const routes = createBrowserRouter([
     {
         path: "/",
@@ -28,24 +29,13 @@ const routes = createBrowserRouter([
 
         ]
     },
+    ...userRoutes,
+    ...adminRoutes,
     {
-        path: "/dashboard/admin",
-        element: <DashboardLayouts />,
-        children: [
-            {
-                path: "/dashboard/admin",
-                element: <MainDashboard />
-            },
-            {
-                path: "/dashboard/admin/course/add",
-                element: <AddNewCourse />
-            },
-        ]
-    },
-    {
-        path: "/prelims/quize",
+        path: "/prelims/start-quiz/:id",
         element: <Quize />
-    }
+    },
+    ...publicRoutes
 
 ])
 

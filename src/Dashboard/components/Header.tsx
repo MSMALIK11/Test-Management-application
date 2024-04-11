@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
 
-  return <div className=" nflex njustify-between nitems-center nw-full np-4 nborder-b nborder-primary">
+  return <div className=" nflex njustify-between nitems-center nw-full np-4 nborder-b nborder-secondary">
     <h4>Welcome To Admin Dashboard</h4>
     <NavLink to="/dashboard/admin/course/add">
 

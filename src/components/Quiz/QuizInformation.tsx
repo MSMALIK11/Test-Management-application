@@ -2,12 +2,12 @@
 import Each from "../shared/Each";
 import { memo } from "react";
 interface QuizProp {
-    questions: any[],
-    visitedQuestions: number[],
-    unVisitedQuestions: number[],
-    markAsReview: number[],
-    currentQuestionIndex: number,
-    onAnyQuestionClick: (questionIndex: number) => void
+    questions: any[];
+    visitedQuestions: number[];
+    unVisitedQuestions: number[];
+    markAsReview: number[];
+    currentQuestionIndex: number;
+    onAnyQuestionClick: (questionIndex: number) => void;
 }
 const QuizInformation = ({
     questions,
@@ -15,7 +15,7 @@ const QuizInformation = ({
     unVisitedQuestions,
     currentQuestionIndex,
     onAnyQuestionClick,
-    markAsReview
+    markAsReview,
 }: QuizProp) => {
     const questionInfo = [
         {
@@ -76,10 +76,15 @@ const QuizInformation = ({
                             <div
                                 onClick={() => onAnyQuestionClick(index)}
                                 className={`nw-[36px] nh-[36px] ncursor-pointer nflex nitems-center active:nscale-90 njustify-center 
-                                ${visitedQuestions.includes(index + 1) ? "!nbg-green-400" : ""
+                                ${visitedQuestions.includes(index + 1)
+                                        ? "!nbg-green-400"
+                                        : ""
                                     }  ${unVisitedQuestions.includes(index + 1) ? "nbg-red-400" : ""
                                     } 
-                                    ${currentQuestionIndex === index ? "!nbg-brand" : ""}
+                                    ${currentQuestionIndex === index
+                                        ? "!nbg-brand"
+                                        : ""
+                                    }
                  nshadow-lg  ntxt-semibold nborder nborder-gray-300  ntext-sm nrounded-full  cursor-pointer`}
                                 key={item.id}
                             >

@@ -15,7 +15,7 @@ const buttonVariants = cva(
         outline:
           "nborder nborder-input nbg-background hover:nbg-accent hover:ntext-accent-foreground",
         secondary:
-          "nbg-secondary ntext-secondary-foreground hover:nbg-secondary/80",
+          "nbg-secondary active:ntext-rose-400 ntext-secondary-foreground hover:nbg-secondary/80",
         ghost: "hover:nbg-accent hover:ntext-accent-foreground",
         link: "ntext-primary nunderline-offset-4 hover:nunderline",
       },

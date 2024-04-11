@@ -7,4 +7,5 @@ import totlaCourseIcon from './icons/totalcourse.svg'
 import totalEnrollIcon from './icons/totalenroll.svg'
 import totalSalesIcon from './icons/totalsale.svg'
 import totalStudentIcon from './icons/totalstudent.svg'
-export { totalStudentIcon, totalSalesIcon, totalEnrollIcon, totlaCourseIcon, BannarImage, googleIcon, detailsBannar, profileImg, brandLogo }
+import indianFlag from './icons/india-flag-icon.svg'
+export { totalStudentIcon, totalSalesIcon, totalEnrollIcon, totlaCourseIcon, BannarImage, googleIcon, detailsBannar, profileImg, brandLogo, indianFlag }

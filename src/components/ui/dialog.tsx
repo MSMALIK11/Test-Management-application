@@ -36,7 +36,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "nfixed nleft-[50%] ntop-[50%] nz-50 ngrid nw-full nmax-w-lg ntranslate-x-[-50%] ntranslate-y-[-50%] ngap-4 nborder nbg-background np-6 nshadow-lg nduration-200 data-[state=open]:nanimate-in data-[state=closed]:nanimate-out data-[state=closed]:nfade-out-0 data-[state=open]:nfade-in-0 data-[state=closed]:nzoom-out-95 data-[state=open]:nzoom-in-95 data-[state=closed]:nslide-out-to-left-1/2 data-[state=closed]:nslide-out-to-top-[48%] data-[state=open]:nslide-in-from-left-1/2 data-[state=open]:nslide-in-from-top-[48%] sm:nrounded-lg",
+        "nfixed nleft-[50%] ntop-[50%] nz-50 ngrid nw-full  ntranslate-x-[-50%] ntranslate-y-[-50%] ngap-4 nborder nbg-background np-6 nshadow-lg nduration-200 data-[state=open]:nanimate-in data-[state=closed]:nanimate-out data-[state=closed]:nfade-out-0 data-[state=open]:nfade-in-0 data-[state=closed]:nzoom-out-95 data-[state=open]:nzoom-in-95 data-[state=closed]:nslide-out-to-left-1/2 data-[state=closed]:nslide-out-to-top-[48%] data-[state=open]:nslide-in-from-left-1/2 data-[state=open]:nslide-in-from-top-[48%] sm:nrounded-lg",
         className
       )}
       {...props}

@@ -63,8 +63,8 @@ const QuizHeader = () => {
                         </span>
                     </div>
                     <div className='nflex njustify-between nitems-center ngap-4'>
-                        <Button variant="outline" className="ntextr-muted ntext-sm" onClick={onClickFullScreen}>Switch To Full Screen</Button>
-                        <Button variant="outline" className="ntextr-muted ntext-sm">Pause</Button>
+                        <Button size="sm" variant="secondary" className="ntextr-muted ntext-sm" onClick={onClickFullScreen}>Switch To Full Screen</Button>
+                        <Button size={"sm"} variant="secondary" className="ntextr-muted ntext-sm">Pause</Button>
 
                     </div>
 

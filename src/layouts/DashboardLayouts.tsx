@@ -1,16 +1,21 @@
-import DashboardSidebar from "@/Dashboard/DashboardSidebar"
+
 import { useState } from "react"
 import { Outlet } from "react-router-dom"
 import { motion } from 'framer-motion'
+import { adminBottomRoutes, adminTopRoutes } from "@/data/data"
+import Sidebar from "@/components/SideBar"
 const DashboardLayouts = () => {
     const [open, setOpen] = useState(true)
     const handleOpen = () => {
         setOpen(!open)
     }
+
+
+
     return (
         <div className="nflex nw-full ">
             <div className="nmax-w-[180px]">
-                <DashboardSidebar open={open} handleOpen={handleOpen} />
+                <Sidebar items={adminTopRoutes} bottomItems={adminBottomRoutes} open={open} handleOpen={handleOpen} />
             </div>
 
             <motion.div className="nflex-1" animate={{

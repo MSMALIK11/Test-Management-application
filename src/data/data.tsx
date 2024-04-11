@@ -1,113 +1,130 @@
-import { FaRegCirclePlay, LuBookDown, MdOutlineBook, MdOutlineQuiz } from '@/components/Icons/Icons'
-import { totlaCourseIcon, totalSalesIcon, totalEnrollIcon, totalStudentIcon, } from '@/assets/assets'
+import {
+    FaRegCirclePlay,
+    LuBookDown,
+    MdOutlineBook,
+    MdOutlineQuiz,
+} from "@/components/Icons/Icons";
+import {
+    AiOutlineDashboard,
+    CiBadgeDollar,
+    CiSettings,
+    IoAnalytics,
+    IoChatbubbleEllipsesOutline,
+    IoInformationCircleOutline,
+    IoMdBook,
+    IoWalletOutline
+} from "@/assets/Icons";
+import {
+    totlaCourseIcon,
+    totalSalesIcon,
+    totalEnrollIcon,
+    totalStudentIcon,
+} from "@/assets/assets";
 export const NavLinks = [
     {
         id: 1,
-        name: 'Evaluation Plans',
-        path: '#'
+        name: "Evaluation Plans",
+        path: "#",
     },
     {
         id: 2,
-        name: 'Prelims',
-        path: '/prelims'
+        name: "Prelims",
+        path: "/prelims",
     },
     {
         id: 3,
-        name: 'Mentered Answer Writing',
-        path: ''
+        name: "Mentered Answer Writing",
+        path: "",
     },
     {
         id: 4,
-        name: 'Notes',
-        path: ''
+        name: "Notes",
+        path: "",
     },
     {
         id: 5,
-        name: 'Video Courses',
-        path: ''
+        name: "Video Courses",
+        path: "",
     },
     {
         id: 6,
-        name: 'PYQ',
-        path: ''
+        name: "PYQ",
+        path: "",
     },
     {
         id: 7,
-        name: 'Toppers Copies',
-        path: ''
+        name: "Toppers Copies",
+        path: "",
     },
     {
         id: 8,
-        name: 'Contact Us',
-        path: ''
+        name: "Contact Us",
+        path: "",
     },
     {
         id: 9,
-        name: 'Toppers` Reviews',
-        path: ''
+        name: "Toppers` Reviews",
+        path: "",
     },
-
-]
+];
 
 export const prelimsTabData = [
     {
-        title: 'UPSC CSE- Prelims',
-        path: '#'
+        title: "UPSC CSE- Prelims",
+        path: "#",
     },
     {
-        title: 'KAS- Prelims',
-        path: '#'
+        title: "KAS- Prelims",
+        path: "#",
     },
-]
-
+];
 
 export const courseList = [
     {
-        title: 'KAS Prelims Combo',
+        title: "KAS Prelims Combo",
         tabKey: "UPSC CSE - Prelims",
-        subTitle: 'Lakshya 2.0 + Parishram + Karnataka Budget Notes',
-        price: 'Free',
+        subTitle: "Lakshya 2.0 + Parishram + Karnataka Budget Notes",
+        price: "Free",
         oldPrice: null,
-        likes: '19',
+        likes: "19",
         isPaid: false,
-        buttonText: 'View Details'
+        buttonText: "View Details",
     },
     {
-        title: 'KAS Prelims Combo',
-        tabKey: 'KAS - Prelims',
-        subTitle: 'Lakshya 2.0 + Parishram + Karnataka Budget Notes',
-        price: '₹2700',
-        oldPrice: '₹5999',
-        likes: '19',
+        title: "KAS Prelims Combo",
+        tabKey: "KAS - Prelims",
+        subTitle: "Lakshya 2.0 + Parishram + Karnataka Budget Notes",
+        price: "₹2700",
+        oldPrice: "₹5999",
+        likes: "19",
         isPaid: true,
-        buttonText: 'View Details & Subscribe'
-    }
-]
+        buttonText: "View Details & Subscribe",
+    },
+];
 
 export const FeaturesList = [
     {
         name: "Live Classes",
-        icon: <FaRegCirclePlay size={28} className='ntext-brand' />,
-        label: 'free',
+        icon: <FaRegCirclePlay size={28} className="ntext-brand" />,
+        label: "free",
         isLive: true,
     },
     {
         name: "Live Test & Quizzes",
-        icon: <MdOutlineQuiz size={28} className='ntext-brand' />,
+        icon: <MdOutlineQuiz size={28} className="ntext-brand" />,
         isLive: true,
     },
     {
         name: "Free Quizzes",
-        icon: <MdOutlineBook size={28} className='ntext-brand' />,
-        label: 'New',
-        labelColor: '#75cd25'
+        icon: <MdOutlineBook size={28} className="ntext-brand" />,
+        label: "New",
+        labelColor: "#75cd25",
     },
     {
         name: "Prev. Year Papers",
-        icon: <LuBookDown size={28} className='ntext-brand' />
+        icon: <LuBookDown size={28} className="ntext-brand" />,
     },
-]
-
+];
 
 export const AllTestDataList = [
     // {
@@ -126,73 +143,160 @@ export const AllTestDataList = [
 
     // },
     {
-        label: 'Free',
-        name: 'Liberin-Test-1',
+        label: "Free",
+        name: "Liberin-Test-1",
         rank: null,
         total: null,
         makrObtain: null,
         totalMark: null,
         attemptDate: "Mar 16",
         isAttempted: false,
-        syllabusText: 'Syllabus',
-        syllabusTextToolTip: 'Placement Test for Liberin',
-        language: 'English',
-        reAttempt: ''
-
+        syllabusText: "Syllabus",
+        syllabusTextToolTip: "Placement Test for Liberin",
+        language: "English",
+        reAttempt: "",
     },
-]
+];
 export const quizList = {
-    "title": "Sample Quiz",
-    "questions": [
+    title: "Sample Quiz",
+    questions: [
         {
-            "id": 1,
-            "question": `If  then find the value of 'x'`,
-            "options": ["London", "Berlin", "Paris", "Madrid"],
-            "correctAnswer": "Paris",
-
+            id: 1,
+            question: `If  then find the value of 'x'`,
+            options: ["London", "Berlin", "Paris", "Madrid"],
+            correctAnswer: "Paris",
         },
         {
-            "id": 2,
-            "question": "Which planet is known as the Red Planet?",
-            "options": ["Mars", "Jupiter", "Venus", "Mercury"],
-            "correctAnswer": "Mars",
+            id: 2,
+            question: "Which planet is known as the Red Planet?",
+            options: ["Mars", "Jupiter", "Venus", "Mercury"],
+            correctAnswer: "Mars",
         },
         {
-            "id": 3,
-            "question": "Who painted the Mona Lisa?",
-            "options": ["Pablo Picasso", "Vincent van Gogh", "Leonardo da Vinci", "Michelangelo"],
-            "correctAnswer": "Leonardo da Vinci",
-
+            id: 3,
+            question: "Who painted the Mona Lisa?",
+            options: [
+                "Pablo Picasso",
+                "Vincent van Gogh",
+                "Leonardo da Vinci",
+                "Michelangelo",
+            ],
+            correctAnswer: "Leonardo da Vinci",
         },
         {
-            "id": 4,
-            "question": "What is the powerhouse of the cell?",
-            "options": ["Nucleus", "Cytoplasm", "Mitochondria", "Endoplasmic reticulum"],
-            "correctAnswer": "Mitochondria",
-        }
-    ]
-}
-
+            id: 4,
+            question: "What is the powerhouse of the cell?",
+            options: [
+                "Nucleus",
+                "Cytoplasm",
+                "Mitochondria",
+                "Endoplasmic reticulum",
+            ],
+            correctAnswer: "Mitochondria",
+        },
+    ],
+};
 
 export const dashboardSalesAnalysis = [
     {
-        title: 'Total Sales',
+        title: "Total Sales",
         img: totalSalesIcon,
-        value: '125k'
+        value: "125k",
     },
     {
-        title: 'Total Courses',
+        title: "Total Courses",
         img: totlaCourseIcon,
-        value: '20'
+        value: "20",
     },
     {
-        title: 'Total Students',
+        title: "Total Students",
         img: totalStudentIcon,
-        value: '12k'
+        value: "12k",
     },
     {
-        title: 'Total Enroll',
+        title: "Total Enroll",
         img: totalEnrollIcon,
-        value: '15k'
+        value: "15k",
+    },
+];
+
+// Admin Dashboard nav lnks
+export const adminTopRoutes = [
+    {
+        path: "/dashboard/admin",
+        name: "Dashboard",
+        icon: <AiOutlineDashboard />,
+    },
+    {
+        path: "/dashboard/admin/my-courses",
+        name: "My Courses",
+        icon: <IoMdBook />,
+    },
+    {
+        path: "/dashboard/admin/messages",
+        name: "Messages",
+        icon: <IoChatbubbleEllipsesOutline />,
+    },
+    {
+        path: "/dashboard/admin/analysis",
+        name: "Analysis",
+        icon: <IoAnalytics />,
+    },
+    {
+        path: "/dashboard/admin/statemets",
+        name: "Statements",
+        icon: <CiBadgeDollar />,
+    },
+];
+// Admi ROutes
+export const adminBottomRoutes = [
+    {
+        path: '',
+        name: 'info',
+        icon: <IoInformationCircleOutline />
+    },
+    {
+        path: '/dashboard/settings',
+        name: 'Settings',
+        icon: <CiSettings />
+    },
+]
+
+// =============================================
+// =================User Routes================
+export const userTopRoutes = [
+    {
+        path: "/profile",
+        name: "Profile",
+        icon: <AiOutlineDashboard />,
+    },
+    {
+        path: "/profile/my-wallet",
+        name: "My Wallet",
+        icon: <IoWalletOutline />,
+    },
+
+    {
+        path: "/profile/my-courses",
+        name: "My Courses",
+        icon: <CiBadgeDollar />,
+    },
+    {
+        path: "/profile/settings",
+        name: "Settings",
+        icon: <CiSettings />,
+    },
+];
+
+export const userBottomRoutes = [
+    {
+        path: '',
+        name: 'info',
+        icon: <IoInformationCircleOutline />
+    },
+    {
+        path: '/dashboard/settings',
+        name: 'Settings',
+        icon: <CiSettings />
     },
 ]

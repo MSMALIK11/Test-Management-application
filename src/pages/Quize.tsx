@@ -8,18 +8,26 @@ import { quizList } from "@/data/data";
 import Each from "@/components/shared/Each";
 import { Button } from "@/components/ui/button";
 import QuizMobileMenu from "@/components/Quiz/QuizMobileMenu";
-
-interface Question {
-    id: number;
-    question: string;
-    options: string[];
-}
-
+import Modal from "@/components/shared/Modal";
+import QuizSubmitPreview from "@/components/QuizSubmitPreview";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store/store";
+import Loading from "@/components/shared/Loading";
+import Typewriter from '@/components/Typewriter'
 const Quize = () => {
-    const [questions] = useState<Question[]>(quizList.questions);
+    // const [questions, setQuestions] = useState<Question[]>([]);
+    const { courses, currentQuiz } = useSelector((state: RootState) => state.course)
+    console.log('courses', courses)
+    const { questions } = currentQuiz
     const [selectedOptions, setSelectedOptions] = useState<string[]>(
-        Array(quizList.questions.length).fill(null)
+        Array(questions?.length).fill(null)
     );
+    const [correctAns, setCorrectAns] = useState<string[]>(
+        Array(questions?.length).fill(null)
+    );
+    const { id } = useParams()
+    const [isShowPreview, setIsShowPreview] = useState(false)
     const [markAsReview, setMarkAsReview] = useState<number[]>([]);
     const [visitedQuestions, setVisitedQuestions] = useState<number[]>([]);
     const [unVisitedQuestions, setUnVisitedQuestions] = useState<number[]>([]);
@@ -28,13 +36,28 @@ const Quize = () => {
     const [openMobileMenu, setOpenMobileMenu] = useState(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const handleQuestionJump = useCallback((questionNo: number) => {
-        if (questionNo >= 0 && questionNo < quizList.questions.length) {
+        if (questionNo >= 0 && questionNo < questions?.length) {
             setCurrentQuestionIndex(questionNo);
         } else {
             console.error("Invalid question number:", questionNo);
         }
     }, []);
+    const handelCheckCorrectAns = () => {
+        const ans = questions[currentQuestionIndex].correctAnswer
+
+        if (ans === selectedOptions[currentQuestionIndex]) {
+            const newSelectedOptions = [...correctAns];
+            newSelectedOptions[currentQuestionIndex] = ans;
+            setCorrectAns(newSelectedOptions);
+
+        } else {
+            console.log('nah re baba na')
+        }
+    }
+
     const handleNext = useCallback(() => {
+        handelCheckCorrectAns()
+
         if (currentQuestionIndex <= questions.length) {
             const selectedOption = selectedOptions[currentQuestionIndex];
             if (selectedOption === null) {
@@ -61,6 +84,7 @@ const Quize = () => {
         const newSelectedOptions = [...selectedOptions];
         newSelectedOptions[currentQuestionIndex] = option;
         setSelectedOptions(newSelectedOptions);
+
     }, [currentQuestionIndex, selectedOptions]);
     // MARK AS REVIEW
     const onMarkAsReviewClick = useCallback(() => {
@@ -84,8 +108,17 @@ const Quize = () => {
         [currentQuestionIndex, questions]
     );
 
+    const onHandleSubmit = () => {
+        setIsShowPreview(!isShowPreview)
+    }
+    const onQuizPreviewClick = () => {
+        setIsShowPreview(!isShowPreview)
+    }
+    const onQuizPreviewClose = () => {
+        setIsShowPreview(!isShowPreview)
+    }
     return (
-        <div className="npx-1">
+        <div className="npx-1" >
             <QuizHeader key={"quiz-header"} />
             <div className="nflex">
                 <div
@@ -97,26 +130,19 @@ const Quize = () => {
                         <h4 className="ntext-md ntext-primary">
                             Question No. {currentQuestionIndex + 1}
                         </h4>
-                        <div className="nflex nitems-center ngap-6 ">
-                            {/* Pending  ERROR:: bottom mobile info menu will getting infinite re rendering */}
-                            {/* <div className="marks nflex ngap-2">
-                                <h4>Marks </h4>
-                                <span className=" nrounded-full ninline-block">+1</span>
-                                <span className=" nrounded-full ninline-block mt-2">-0</span>
-                            </div> */}
-
-                            {/* <QuizTimeTrack /> */}
+                        <div className="nflex nitems-center ngap-6">
                             <div></div>
                         </div>
                         <div></div>
                     </div>
                     <div id="options-container" className="nw-[60%]">
+                        {/* <Typewriter text={questions[currentQuestionIndex]?.question} /> */}
                         <h3 className="nmb-4">
-                            {questions[currentQuestionIndex].question}
+                            {questions[currentQuestionIndex]?.question}
                         </h3>
                         <div className="nlflex nflex-col ngap-4 nmb-4  nspace-y-2">
                             <Each
-                                of={currentQuestion.options}
+                                of={currentQuestion?.options}
                                 render={(quiz) => (
                                     <div
                                         onClick={() => handleOptionSelect(quiz)}
@@ -146,7 +172,7 @@ const Quize = () => {
                                     Mark for Review & Next
                                 </Button>
                                 {currentQuestionIndex === questions.length - 1 ? (
-                                    <Button variant={"destructive"}>Submit</Button>
+                                    <Button variant={"secondary"} onClick={onHandleSubmit}>Submit</Button>
                                 ) : (
                                     <Button
                                         variant={"secondary"}
@@ -171,7 +197,7 @@ const Quize = () => {
                         unVisitedQuestions={unVisitedQuestions}
                         visitedQuestions={visitedQuestions}
                         onAnyQuestionClick={handleQuestionJump}
-                        questions={quizList.questions}
+                        questions={questions}
                         markAsReview={markAsReview}
                     />
                     <div
@@ -194,7 +220,7 @@ const Quize = () => {
                             unVisitedQuestions={unVisitedQuestions}
                             visitedQuestions={visitedQuestions}
                             onAnyQuestionClick={handleQuestionJump}
-                            questions={quizList.questions}
+                            questions={questions}
                             markAsReview={markAsReview}
                         />
                         <div
@@ -214,6 +240,10 @@ const Quize = () => {
             >
                 <FaCirclePlus className="ntext-primary" />
             </div>
+            <Modal isVisible={isShowPreview} onClick={onQuizPreviewClick} onClose={onQuizPreviewClose} >
+                <QuizSubmitPreview questions={questions} correctAns={correctAns} />
+            </Modal>
+            <Loading isLoading={!questions} />
         </div>
     );
 };

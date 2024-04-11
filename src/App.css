@@ -13,10 +13,7 @@
 
 }
 body{
-  font-family: 'Lato',sans-serif;
-  height: 100vh;
-  /* background-color: hsl(var(--background));
-  color: hsl(var(--foreground)) */
+  font-family: 'Lato',sans-serif !important;
   color: white !important;
  
 }
@@ -27,6 +24,9 @@ ul li span{
 h1,h2,h3,h4,h5,h6{
   margin: 0;
   padding: 0;
+}
+.text-uppercase{
+  text-transform: uppercase;
 }
 .hero-animation{
   background-image: linear-gradient(147.92deg,hsla(239,76%,53%,0.53) 10.41%, hsla(0,0%,100%,0) 89.25%);
@@ -280,9 +280,8 @@ position: relative;
 
 }
 /* Mobile Responsive  */
-@media screen and (min-width:375px)  and (max-width:667px){
-  #header{
-    padding: 0 !important;
+@media  (max-width:667px){
+  #header{   padding: 0 !important;
   }
   #prelims-container #tab-container{
     display: flex;
@@ -364,4 +363,28 @@ position: relative;
   }
 }
 /* Design Admin Dashboard  */
+::-webkit-scrollbar{
+  width: 2px;
+}
 
+::-webkit-scrollbar-thumb{
+  background-color:var(--info);
+  border-radius: 5px;
+}
+
+/* Design Admin Dashbaord */
+#delete-course-icon{
+  transform: translatex(100px);
+  opacity: 0;
+  cursor: pointer;
+}
+#my-course-card{
+  transition: transform 0.4s ease-in;
+  overflow: hidden;
+
+}
+#my-course-card:hover #delete-course-icon{
+  transform: translateY(0);
+  opacity: 1;
+
+}

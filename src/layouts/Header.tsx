@@ -8,14 +8,18 @@ import MobileSideMenu from '@/components/MobileSideMenu/MobileSideMenu'
 import ProfileMenu from '@/components/ProfileMenu'
 import Logo from '@/components/Logo'
 import { Button } from '@/components/ui/button'
+import DarkMode from '@/components/DarkMode'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/store/store'
 const Header = () => {
+    const user = useSelector((state: RootState) => state.user.user)
 
     return (
         <div id='header' className='shadow-sm nbg-darkPrimary nborder-b nborder-b-secondary  nshadow-lg nsticky nbox-border ntop-0 nz-40 nw-full'>
             <div className='npy-2 lg:npx-12 nflex njustify-between  nitems-center'>
                 <Logo />
                 <div className='nflex ngap-2 nitems-center'>
-                    {/* <DarkMode /> */}
+                    <DarkMode />
                     <NavLink id='hide-sm' to="/dashboard/admin">
                         <Button size={'sm'} variant="secondary">Admin Dashboard</Button>
                     </NavLink>
