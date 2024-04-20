@@ -8,6 +8,7 @@ import { Loader2 } from "lucide-react"
 import api from '../services'
 import { NavLink, useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
+import { errorHandler } from "@/helpers/errorHandler";
 const Signup = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [formData, setFormData] = useState<SignupFormType>({
@@ -40,8 +41,8 @@ const Signup = () => {
                 setIsLoading(false)
             }
 
-        } catch (error) {
-            const message = error?.response?.data.message || "Something wen't wrong please try agian "
+        } catch (error: any) {
+            const message = errorHandler(error)
             toast.error(message)
             setIsLoading(false)
         }
@@ -59,7 +60,6 @@ const Signup = () => {
                     Sign Up
                 </h2>
                 <div className="nmy-8">
-
                     <LabelInputContainer>
                         <Label htmlFor="name">Name</Label>
                         <Input onChange={handleChange} id="name" name="name" placeholder="Tyler" type="text" />
@@ -94,15 +94,6 @@ const Signup = () => {
 }
 
 export default Signup
-const BottomGradient = () => {
-    return (
-        <>
-            <span className="ngroup-hover/nbtn:nopacity-100 nblock ntransition nduration-500 nopacity-0 nabsolute nh-px nw-full nbottom-px nninset-x-0 nbg-gradient-to-r nfrom-transparent nvia-cyan-500 nto-transparent" />
-            <span className="ngroup-hover/nbtn:nopacity-100 nblur-sm nblock ntransition nduration-500 nopacity-0 nabsolute nh-px nw-1/2 nmx-auto nbottom-px ninset-x-10 nbg-gradient-to-r nfrom-transparent nvia-indigo-500 nto-transparent" />
-        </>
-    );
-};
-
 const LabelInputContainer = ({
     children,
     className,

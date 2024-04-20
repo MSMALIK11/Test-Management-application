@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const typewriterIntervalMS = 5;
 
@@ -7,7 +7,7 @@ const Typewriter = ({ text }: { text: string }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
-    if (currentIndex >= text.length) {
+    if (currentIndex >= text?.length) {
       return; // No need to continue if we've finished typing
     }
 

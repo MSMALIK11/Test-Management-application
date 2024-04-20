@@ -1,26 +1,25 @@
 import { forwardRef, ForwardedRef } from 'react'
 import { Input } from '../ui/input'
 import { Label } from '../ui/label'
-import { useFormContext } from "react-hook-form";
 import { BiInfoCircle } from 'react-icons/bi';
-
 interface InputProp {
     label?: string,
     hintText?: string,
-    onChange?: () => void,
-    onBlur?: () => void,
     name?: string,
     className?: string,
-    errorMessage?: string | undefined
+    errorMessage?: string | undefined,
+    inputValue?: string | number | undefined,
+    readonly?: boolean,
+    onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const InputControl = forwardRef(({ label, hintText, onChange, name, errorMessage, className, ...rest }: InputProp,
+const InputControl = forwardRef(({ label, inputValue, onInputChange, hintText, name, errorMessage, className, ...rest }: InputProp,
     ref: ForwardedRef<HTMLInputElement>
 ) => {
     return (
         <div className={`nspace-y-1 ${className}`}>
-            <Label>{label}</Label>
-            <Input ref={ref} placeholder={hintText} onChange={onChange} name={name} {...rest} />
+            <Label className='nflex ngap-1'>{label} </Label>
+            <Input ref={ref} value={inputValue} onChange={onInputChange} placeholder={hintText} name={name} {...rest} />
             {
                 errorMessage && <div className='nflex njustify-end'>
                     <p className='ntext-xs nflex nitems-center ntext-red-500 ngap-1'><BiInfoCircle size={16} />{errorMessage}</p>

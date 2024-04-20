@@ -1,5 +1,6 @@
 import { SignupFormType, LoginFormType } from "@/types/userType"
 import { tmsService } from "../http"
+import { ChangePassProp } from "@/types"
 export const user = {
 
     async login(payload: LoginFormType) {
@@ -18,7 +19,7 @@ export const user = {
     async logout() {
         return tmsService.get('/logout')
     },
-    async changePassword({ currentPassword, newPassword }: { currentPassword: string, newPassword: string }) {
+    async changePassword({ currentPassword, newPassword }: ChangePassProp) {
         return tmsService.put('/user/changePassword', { currentPassword, newPassword })
 
     }

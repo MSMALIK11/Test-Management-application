@@ -23,8 +23,6 @@ const MainLayputs = () => {
     return (
         <div>
             <Header />
-
-
             <Outlet />
             <div id='bottom-navigation' className='nfixed  nbottom-0 nw-full'>
                 <BottomNavigaion />

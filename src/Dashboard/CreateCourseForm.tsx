@@ -1,31 +1,34 @@
+import { useState } from "react";
 import InputControl from "@/components/shared/InputControl";
 import InputNumberControl from "@/components/shared/InputNumberControl";
 import TextAreaControl from "@/components/shared/TextAreaControl";
 import { Button } from "@/components/ui/button";
 import { CourseType } from "@/types/CourseType";
-import React, { useState } from "react";
+import { Event } from "@/types";
 
 interface CourseProp {
     addCourse: (data: CourseType) => void
 }
 
-const initialState = {
+const initialState: CourseType = {
     title: '',
     description: "",
     price: "",
-    options: [],
     timeDuration: {
         hh: "",
         mm: "",
         ss: ""
     },
     totalMarks: "",
-    totalQuestions: ""
+    totalQuestions: "",
+    questions: []
 }
+
 
 const CreateCourseForm = ({ addCourse }: CourseProp) => {
     const [course, setCourse] = useState<CourseType>(initialState)
-    const handleCourse = (event: { target: { name: string, value: string } }) => {
+
+    const handleCourse = (event: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target
         setCourse(prevCourse => ({
             ...prevCourse,
@@ -35,6 +38,12 @@ const CreateCourseForm = ({ addCourse }: CourseProp) => {
             )
         }));
     }
+    const handleDescription = (event: React.ChangeEvent<HTMLTextAreaElement> | Event) => {
+        const { name, value } = event.target
+        setCourse(prevCourse => ({
+            ...prevCourse, [name]: value
+        }))
+    };
 
     const onResetForm = () => {
         setCourse(initialState)
@@ -50,15 +59,15 @@ const CreateCourseForm = ({ addCourse }: CourseProp) => {
                 label="Title"
                 name="title"
                 hintText="Enter title"
-                value={course.title}
-                onChange={handleCourse}
+                inputValue={course.title}
+                onInputChange={handleCourse}
             />
             <TextAreaControl
                 label="Description"
                 name="description"
-                value={course.description}
+                inputValue={course.description}
                 hintText="Enter description"
-                onChange={handleCourse}
+                onInputChange={handleDescription}
             />
             <div className="ngrid ngrid-cols-2 ngap-1">
                 <InputNumberControl
@@ -66,14 +75,14 @@ const CreateCourseForm = ({ addCourse }: CourseProp) => {
                     name="totalQuestions"
                     value={course.totalQuestions}
                     hintText="Enter number of Questions"
-                    onChange={handleCourse}
+                    onInputChange={handleCourse}
                 />
                 <InputNumberControl
                     name="price"
                     label="Price"
                     hintText="Price"
                     value={course.price}
-                    onChange={handleCourse}
+                    onInputChange={handleCourse}
                 />
             </div>
             <div className="ngrid ngrid-cols-2 ngap-1">
@@ -82,7 +91,7 @@ const CreateCourseForm = ({ addCourse }: CourseProp) => {
                     name="totalMarks"
                     hintText="Enter total marks"
                     value={course?.totalMarks}
-                    onChange={handleCourse}
+                    onInputChange={handleCourse}
                 />
                 <div className="nflex">
                     <InputNumberControl
@@ -90,21 +99,21 @@ const CreateCourseForm = ({ addCourse }: CourseProp) => {
                         label="HH"
                         hintText="HH"
                         value={course.timeDuration.hh}
-                        onChange={handleCourse}
+                        onInputChange={handleCourse}
                     />
                     <InputNumberControl
                         name="mm"
                         label="MM"
                         hintText="MM"
-                        value={course.timeDuration.mm}
-                        onChange={handleCourse}
+                        value={course?.timeDuration.mm}
+                        onInputChange={handleCourse}
                     />
                     <InputNumberControl
                         name="ss"
                         label="SS"
                         hintText="SS"
                         value={course.timeDuration.ss}
-                        onChange={handleCourse}
+                        onInputChange={handleCourse}
                     />
                 </div>
             </div>

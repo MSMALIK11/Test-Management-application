@@ -10,8 +10,6 @@ const DashboardLayouts = () => {
         setOpen(!open)
     }
 
-
-
     return (
         <div className="nflex nw-full ">
             <div className="nmax-w-[180px]">

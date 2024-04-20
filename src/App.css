@@ -28,6 +28,7 @@ h1,h2,h3,h4,h5,h6{
 .text-uppercase{
   text-transform: uppercase;
 }
+
 .hero-animation{
   background-image: linear-gradient(147.92deg,hsla(239,76%,53%,0.53) 10.41%, hsla(0,0%,100%,0) 89.25%);
   animation:changeBackgroundColor 8s infinite alternate;

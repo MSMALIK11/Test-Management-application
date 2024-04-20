@@ -2,16 +2,28 @@ import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CreateCourseForm from "./CreateCourseForm";
-import { CourseType } from "@/types/CourseType";
+import { CourseType, QuestionType } from "@/types/CourseType";
 import CoursePreviewList from "./AddNewCourse/CoursePreviewList";
 import CreateQuestions from "./AddNewCourse/CreateQuestion";
 import api from '@/services'
 import toast from "react-hot-toast";
+import { errorHandler } from "@/helpers/errorHandler";
 
 // Component Start 
 const AddNewCourse = () => {
-    const [loading, setLaoding] = useState(false)
-    const [course, setCourse] = useState<CourseType>({});
+    const [course, setCourse] = useState<CourseType>({
+        title: "",
+        description: "",
+        totalQuestions: 0,
+        price: 0,
+        totalMarks: 0,
+        timeDuration: {
+            hh: 0,
+            mm: 0,
+            ss: 0
+        },
+        questions: [],
+    });
     const [isOptionFormVisible, setIsOptionFormVisible] = useState(false)
 
     const navigate = useNavigate()
@@ -20,24 +32,23 @@ const AddNewCourse = () => {
         setCourse(course)
         setIsOptionFormVisible(!isOptionFormVisible)
     }
-    const onAddQuestions = (question) => {
+    const onAddQuestions = (question: QuestionType) => {
+
         setCourse((prev) => ({
             ...prev,
             questions: Array.isArray(prev.questions) ? [...prev.questions, question] : [question]
         }));
+        console.log('coursr', course)
     }
     const onHandlePublish = async () => {
-        setLaoding(true)
         try {
             const res = await api.quiz.InsertQuiz(course)
             if (res.status === 200) {
-                setLaoding(false)
                 toast.success('Course has been created successfully 💐')
                 navigate('/dashboard/admin/my-courses')
             }
         } catch (error) {
-            setLaoding(false)
-            const errorMessage = error?.response?.data.error || 'Internal Server error '
+            const errorMessage = errorHandler(error)
             toast.error(errorMessage)
             console.error('Error::while publishing the course ', error)
         }

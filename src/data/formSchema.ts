@@ -6,8 +6,14 @@ const changePasswordSchema = yup.object().shape({
     confirmPassword: yup.string()
         .min(4)
         .max(10)
-        .oneOf([yup.ref('newPassword'), null], 'Passwords must match')
+        .oneOf([yup.ref('newPassword')], 'Passwords must match')
         .required('Please Confirm New Password')
 })
 
-export { changePasswordSchema }
+const createCourseSchema = yup.object().shape({
+    question: yup.string().required("Question is filed is required")
+
+
+})
+
+export { changePasswordSchema, createCourseSchema }

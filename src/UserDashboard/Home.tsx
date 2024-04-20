@@ -1,4 +1,3 @@
-import React from 'react'
 import Profile from './Profile'
 import AD from './AD'
 import MyCourses from './MyCourses'

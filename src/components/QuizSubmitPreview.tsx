@@ -2,14 +2,22 @@ import { Trophy } from "lucide-react"
 import { Label } from "./ui/label"
 import { Card } from "./ui/card"
 import Each from "./shared/Each"
+import { QuestionType } from "@/types/CourseType"
+interface SubmitProp {
+    questions: QuestionType[],
+    correctAns: string[]
+}
 
-const QuizSubmitPreview = ({ questions, correctAns }) => {
+const QuizSubmitPreview = ({ questions, correctAns }: SubmitProp) => {
     const currectAns = correctAns.filter((item) => item !== null)
     const calculateAccuracy = () => {
-        console.log('accuracy', currectAns.length, questions.length)
-        const accuracy = currectAns.length / questions.length * 100
-        return accuracy.toFixed(2)
-    }
+        if (correctAns.length > 0 && questions) {
+            const accuracy = (correctAns.length / questions?.length) * 100;
+            return accuracy.toFixed(2);
+        }
+        return "N/A";
+    };
+
     return (
         <div>
             <div className="nflex nleading-1 nflex-col nitems-center njustify-center">
@@ -43,8 +51,8 @@ const QuizSubmitPreview = ({ questions, correctAns }) => {
                 </div>
                 <div className="nh-[160px] noverflow-auto">
 
-                    <Each of={questions} render={(item, index) =>
-                        <div className="ngrid ngrid-cols-2 hover:nbg-secondary">
+                    <Each of={questions} render={(item: QuestionType, index) =>
+                        <div className="ngrid ngrid-cols-2 hover:nbg-secondary" key={index}>
                             <ul className="nflex nflex-col">
                                 <li className="npx-3 npy-4"><span className="nbg-secondary np-2 ntext-xs nrounded-full">
                                     {index < 10 ? `0${index + 1}` : index + 1}</span>{item.question}

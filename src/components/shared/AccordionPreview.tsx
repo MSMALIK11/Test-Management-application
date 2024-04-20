@@ -5,9 +5,7 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 
-
-
-const AccordionPreview = ({ questions }) => {
+const AccordionPreview = () => {
     return (
         <Accordion type="single" collapsible className="w-full">
             <AccordionItem value="item-1">

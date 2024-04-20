@@ -1,8 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
+import { QuestionType } from "@/types/CourseType";
 import Each from "../shared/Each";
 import { memo } from "react";
 interface QuizProp {
-    questions: any[];
+    questions: QuestionType[] | [];
     visitedQuestions: number[];
     unVisitedQuestions: number[];
     markAsReview: number[];
@@ -40,6 +41,7 @@ const QuizInformation = ({
         },
     ];
 
+    console.log('question type', questions)
     return (
         <div
             id="quiz-info-section"
@@ -49,8 +51,8 @@ const QuizInformation = ({
                 {
                     <Each
                         of={questionInfo}
-                        render={(quiz) => (
-                            <div className="nflex nitems-center ngap-1">
+                        render={(quiz, index) => (
+                            <div className="nflex nitems-center ngap-1" key={index}>
                                 <span
                                     className={`${quiz.bgColor} fancy-border npx-2 npy-0.5 ntext-xs`}
                                 >
@@ -72,7 +74,7 @@ const QuizInformation = ({
                 <div className="nflex nflex-wrap ngap-4 nmt-4">
                     <Each
                         of={questions}
-                        render={(item, index) => (
+                        render={(_item, index) => (
                             <div
                                 onClick={() => onAnyQuestionClick(index)}
                                 className={`nw-[36px] nh-[36px] ncursor-pointer nflex nitems-center active:nscale-90 njustify-center 
@@ -86,13 +88,16 @@ const QuizInformation = ({
                                         : ""
                                     }
                  nshadow-lg  ntxt-semibold nborder nborder-gray-300  ntext-sm nrounded-full  cursor-pointer`}
-                                key={item.id}
+                                key={index}
                             >
                                 {index + 1}
                             </div>
                         )}
                     />
+
+
                 </div>
+
             </div>
         </div>
     );

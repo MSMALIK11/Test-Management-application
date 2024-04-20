@@ -1,17 +1,19 @@
 
+import { Event } from '@/types'
 import { Label } from '../ui/label'
 import { Textarea } from '../ui/textarea'
 interface InputProp {
     label: string,
     hintText: string,
-    onChange: () => void,
-    name: string
+    onInputChange?: (event: React.ChangeEvent<HTMLTextAreaElement> | Event) => void,
+    name: string,
+    inputValue?: string
 }
-const TextAreaControl = ({ label, hintText, onChange, name, ...rest }: InputProp) => {
+const TextAreaControl = ({ label, inputValue, hintText, onInputChange, name, ...rest }: InputProp) => {
     return (
         <div className='nspace-y-1'>
             <Label>{label}</Label>
-            <Textarea placeholder={hintText} onChange={onChange} name={name} {...rest} />
+            <Textarea placeholder={hintText} value={inputValue} onChange={onInputChange} name={name} {...rest} />
         </div>
     )
 }

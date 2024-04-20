@@ -5,20 +5,18 @@ import { RouterProvider } from 'react-router-dom';
 import routes from './routes/routes';
 import { useEffect, useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
-import { AppleIcon } from 'lucide-react';
-import Loading from './components/shared/Loading';
+// import Loading from './components/shared/Loading';
 import api from '@/services'
 import { setCurrentUser } from './store/features/userSlice';
-import { RootState } from './store/store';
 function App() {
   const dispatch = useDispatch()
   const [theme] = useState(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "dark"
   );
   const element = document.documentElement;
-  const { data, isLoading, refetch } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ['user'],
     queryFn: api.user.getUserProfile,
     refetchOnWindowFocus: true
@@ -47,7 +45,7 @@ function App() {
     <main className='noverflow-x-hidden'>
       <Toaster position='top-center' />
       <RouterProvider router={routes} />
-      <Loading isLoading={isLoading} />
+      {/* <Loading isLoading={isLoading} /> */}
     </main>
   )
 }

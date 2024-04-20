@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { RootState } from "@/store/store";
 import { useSelector } from "react-redux";
 const Profile = () => {
-    const user = useSelector((state: RootState) => state.user.user)
+    const user = useSelector((state: RootState) => state?.user?.user)
     return (
         <div className="nbg-secondary nw-[280px] np-4">
             <h2>My Profile</h2>

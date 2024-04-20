@@ -1,6 +1,6 @@
 import { AiOutlineDashboard } from "react-icons/ai";
-import { IoMdBook } from "react-icons/io";
-import { CiSettings } from "react-icons/ci";
+import { IoMdBook, IoMdTrash } from "react-icons/io";
+import { CiSettings, CiCircleInfo } from "react-icons/ci";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
 import { FaChevronCircleLeft, FaStar } from "react-icons/fa";
@@ -27,7 +27,9 @@ export {
     FaStar,
     FaBoltLightning,
     IoWalletOutline,
-    FaRegEdit
+    FaRegEdit,
+    IoMdTrash,
+    CiCircleInfo
 
 
 }

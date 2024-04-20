@@ -10,23 +10,18 @@ import { Button } from "@/components/ui/button";
 import QuizMobileMenu from "@/components/Quiz/QuizMobileMenu";
 import Modal from "@/components/shared/Modal";
 import QuizSubmitPreview from "@/components/QuizSubmitPreview";
-import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "@/store/store";
 import Loading from "@/components/shared/Loading";
-import Typewriter from '@/components/Typewriter'
+import InputNumberControl from "@/components/shared/InputNumberControl";
 const Quize = () => {
-    // const [questions, setQuestions] = useState<Question[]>([]);
-    const { courses, currentQuiz } = useSelector((state: RootState) => state.course)
-    console.log('courses', courses)
-    const { questions } = currentQuiz
-    const [selectedOptions, setSelectedOptions] = useState<string[]>(
-        Array(questions?.length).fill(null)
-    );
-    const [correctAns, setCorrectAns] = useState<string[]>(
-        Array(questions?.length).fill(null)
-    );
-    const { id } = useParams()
+    const { currentQuiz } = useSelector((state: RootState) => state.course)
+    const questions = currentQuiz?.questions ?? null;
+    const initialArrayLength = questions.length;
+    console.log('c,currentQuizurrentQuiz', currentQuiz)
+    const [selectedOptions, setSelectedOptions] = useState<string[]>(Array(initialArrayLength).fill(''));
+    const [correctAns, setCorrectAns] = useState<string[]>(Array(initialArrayLength).fill(''));
+
     const [isShowPreview, setIsShowPreview] = useState(false)
     const [markAsReview, setMarkAsReview] = useState<number[]>([]);
     const [visitedQuestions, setVisitedQuestions] = useState<number[]>([]);
@@ -57,7 +52,6 @@ const Quize = () => {
 
     const handleNext = useCallback(() => {
         handelCheckCorrectAns()
-
         if (currentQuestionIndex <= questions.length) {
             const selectedOption = selectedOptions[currentQuestionIndex];
             if (selectedOption === null) {
@@ -117,6 +111,7 @@ const Quize = () => {
     const onQuizPreviewClose = () => {
         setIsShowPreview(!isShowPreview)
     }
+    console.log('quiz question tsx', questions)
     return (
         <div className="npx-1" >
             <QuizHeader key={"quiz-header"} />
@@ -143,13 +138,13 @@ const Quize = () => {
                         <div className="nlflex nflex-col ngap-4 nmb-4  nspace-y-2">
                             <Each
                                 of={currentQuestion?.options}
-                                render={(quiz) => (
+                                render={(quiz: string) => (
                                     <div
                                         onClick={() => handleOptionSelect(quiz)}
                                         className="nbg-background  nshadow-lg nflex  njustify-between npx-4 npy-2.5 nrounded-md nborder nborder-secondary active:nbg-softHover active:ntext-brand"
                                     >
                                         <label htmlFor="option1">{quiz}</label>
-                                        <input
+                                        <InputNumberControl
                                             type="checkbox"
                                             checked={selectedOptions[currentQuestionIndex] === quiz}
                                             readOnly
@@ -220,7 +215,7 @@ const Quize = () => {
                             unVisitedQuestions={unVisitedQuestions}
                             visitedQuestions={visitedQuestions}
                             onAnyQuestionClick={handleQuestionJump}
-                            questions={questions}
+                            questions={questions || []}
                             markAsReview={markAsReview}
                         />
                         <div

@@ -1,30 +1,38 @@
 import InputControl from "@/components/shared/InputControl";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-
+import UploadImage from "../components/UploadImage";
+import TextEditor from "../components/TextEditor";
+import { QuestionType } from "@/types/CourseType";
 const optionClass = "nflex nitems-center ngap-2";
 
-const CreateQuestions = ({ onAddQuestions }) => {
-    const optionsInitialState = {
-        question: '',
-        options: ['', '', '', ''],
-        correctAnswer: null
+const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionType) => void }) => {
+    const optionsInitialState: QuestionType = {
+        question: "",
+        options: [
+            { id: "1", value: "" },
+            { id: "2", value: "" },
+            { id: "3", value: "" },
+            { id: "4", value: "" }
+        ],
+        correctAnswer: "",
+        explanation: ""
     };
 
-    const [options, setOptions] = useState(optionsInitialState);
+    const [options, setOptions] = useState<QuestionType>(optionsInitialState);
     const [currentAnswerIndex, setCurrentAnswerIndex] = useState<number | null>(null);
 
-    const handleQuestionChange = (event) => {
+    const handleQuestionChange = (event: { target: { value: string; }; }) => {
         setOptions(prevOptions => ({
             ...prevOptions,
             question: event.target.value
         }));
     };
 
-    const handleOptionChange = (value, index) => {
+    const handleOptionChange = (value: string, index: number) => {
         setOptions(prevOptions => ({
             ...prevOptions,
-            options: prevOptions.options.map((opt, i) => (i === index ? value : opt))
+            options: prevOptions.options.map((opt, i) => (i === index ? value : opt as any)) // Cast value to optionType
         }));
     };
 
@@ -33,7 +41,7 @@ const CreateQuestions = ({ onAddQuestions }) => {
         const currAns = options.options[index]
         setOptions((prevOptions) => ({
             ...prevOptions,
-            correctAnswer: currAns
+            correctAnswer: currAns as unknown as string
         }));
     };
 
@@ -42,26 +50,35 @@ const CreateQuestions = ({ onAddQuestions }) => {
         setOptions(optionsInitialState);
         setCurrentAnswerIndex(null);
     };
+    // Handle explanations 
+    const onExplanationChange = (value: string) => {
+        setOptions((prevOptions) => ({
+            ...prevOptions,
+            explanation: value
+        }));
+    }
+    // Check if question or first two options are empty
+    const isDisabled = !options.question || !options.options[0] || !options.options[1] || !options.correctAnswer;
 
     return (
         <div className="nbg-secondary nw-full np-4 nrounded-md">
             <div className="np-2">
                 <InputControl
                     label="Question"
-                    value={options.question}
+                    inputValue={options.question}
                     hintText="Enter Question title"
-                    onChange={handleQuestionChange}
+                    onInputChange={handleQuestionChange}
                 />
-                <div className="nmt-4">
+                <div className="nmt-4 optionsBox" >
                     {['A', 'B', 'C', 'D'].map((optionName, index) => (
                         <InputControl
                             key={optionName}
                             name={optionName}
-                            value={options.options[index]}
+                            // inputValue={options.options[index] || ""}
                             label={optionName}
-                            hintText={`Option ${optionName}`}
+                            hintText={`Option ${optionName} ${index === 0 || index === 1 ? '*' : ''} `}
                             className={optionClass}
-                            onChange={(event) => handleOptionChange(event.target.value, index)}
+                            onInputChange={(event) => handleOptionChange(event.target.value, index)}
                         />
                     ))}
                     <div className="nflex ngap-4 nmt-6 nitems-center">
@@ -72,15 +89,21 @@ const CreateQuestions = ({ onAddQuestions }) => {
                                 key={optionName}
                                 tabIndex={0}
                                 onClick={() => handleCorrectAnswerClick(index)}
-                                className={`nh-[26px] ntext-xs nflex nitems-center njustify-center nw-[26px] hover:nborder-background nrounded-full  ${currentAnswerIndex === index ? 'nbg-brand' : ''}`}
+                                className={`nh-[26px] ntext-xs nflex nitems-center njustify-center nw-[26px] hover:nborder-background  nrounded-full  ${currentAnswerIndex === index ? 'nbg-brand' : ''}`}
                             >
                                 {optionName}
                             </Button>
                         ))}
                     </div>
                 </div>
+
+                <div className="nspace-y-4 nmt-4">
+                    <TextEditor onChange={onExplanationChange} />
+                    <UploadImage />
+
+                </div>
                 <div className="nflex njustify-end">
-                    <Button onClick={handleAddQuestion} className="!nbg-background nmt-4 !ntext-primary">Add</Button>
+                    <Button disabled={isDisabled} onClick={handleAddQuestion} className="!nbg-background nmt-4 !ntext-primary">Add</Button>
                 </div>
             </div>
         </div>
