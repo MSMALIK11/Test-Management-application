@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://kartavyaias.com/",
+  "homepage": "https://test-series.kartavyaias.com/",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
