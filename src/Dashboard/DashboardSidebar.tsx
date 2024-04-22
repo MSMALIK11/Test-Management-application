@@ -6,6 +6,7 @@ import { motion } from "framer-motion"
 import Logo from '@/components/Logo';
 import { NavLink, useLocation } from 'react-router-dom';
 import ProfileMenu from '@/components/ProfileMenu';
+import Login from "@/components/Login/Login";
 interface ItemProp {
     name: string,
     path: string,
@@ -22,7 +23,8 @@ const DashboardSidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
     const location = useLocation()
     const NavItem = ({ name, icon, pathname, open }: { name: string, icon: React.ReactNode, pathname: string, open: boolean }) => (
         <NavLink to={pathname}>
-            <li className={`nflex  nrounded-lg  ${location.pathname === pathname ? 'nbg-secondary ntext-brand' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-secondary/50 ncursor-pointer transition-transform hover:nscale-105 duration-300`}>
+            <li className={`nflex  nrounded-lg  ${location.pathname === pathname ? 'nbg-secondary ntext-primary' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-secondary/50 ncursor-pointer transition-transform hover:nscale-105 duration-300 ntext-rose-400`}>
+
 
                 <span className='ntext-lg'>{icon}</span>
                 {open && <span className='nwhitespace-no-wrap'>{name}</span>}
@@ -49,6 +51,7 @@ const DashboardSidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
 
             <div className='nh-[80%] nflex nflex-col njustify-between'>
                 <ul className='nflex nflex-col nitems-center ngap-2'>
+
                     <Each of={items} render={(item) =>
                         <NavItem name={item.name} icon={item.icon} open={open} pathname={item.path} />
                     } />
@@ -58,13 +61,14 @@ const DashboardSidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
                     <Each of={bottomItems} render={(item) =>
                         <NavItem name={item.name} icon={item.icon} open={open} pathname={item.path} />
                     } />
+
                     <div className='nflex nitems-center'>
                         <ProfileMenu />
                         {
                             open && <span>Profile</span>
                         }
-
                     </div>
+                    <Login />
 
                 </ul>
             </div>

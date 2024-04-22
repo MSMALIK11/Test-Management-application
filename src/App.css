@@ -389,3 +389,11 @@ position: relative;
   opacity: 1;
 
 }
+
+
+.loading{
+  position: absolute;
+  top:0;
+  left: 50%;
+  transform: translateY(50%,50%);
+}

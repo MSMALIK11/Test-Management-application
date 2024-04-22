@@ -4,17 +4,12 @@ import { useState } from "react";
 import UploadImage from "../components/UploadImage";
 import TextEditor from "../components/TextEditor";
 import { QuestionType } from "@/types/CourseType";
+import Heading from "@/components/shared/Heading";
 const optionClass = "nflex nitems-center ngap-2";
-
-const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionType) => void }) => {
+const CreateQuestions = ({ onAddQuestions, title }: { onAddQuestions: (value: QuestionType) => void, title?: string }) => {
     const optionsInitialState: QuestionType = {
         question: "",
-        options: [
-            { id: "1", value: "" },
-            { id: "2", value: "" },
-            { id: "3", value: "" },
-            { id: "4", value: "" }
-        ],
+        options: ["", "", "", ""],
         correctAnswer: "",
         explanation: ""
     };
@@ -30,22 +25,30 @@ const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionT
     };
 
     const handleOptionChange = (value: string, index: number) => {
-        setOptions(prevOptions => ({
-            ...prevOptions,
-            options: prevOptions.options.map((opt, i) => (i === index ? value : opt as any)) // Cast value to optionType
-        }));
+        console.log('vakue', value)
+        console.log('optoons', options)
+        setOptions((prevOptions) => {
+            const updatedOptions = [...prevOptions.options]; // Create a copy of the options array
+            updatedOptions[index] = value;
+            return {
+                ...prevOptions,
+                options: updatedOptions
+            };
+        });
+
     };
 
-    const handleCorrectAnswerClick = (index: number) => {
+    const handleCorrectAnswerClick = (optionName: string, index: number) => {
         setCurrentAnswerIndex(index)
-        const currAns = options.options[index]
+        // const currAns = options.options[index]
         setOptions((prevOptions) => ({
             ...prevOptions,
-            correctAnswer: currAns as unknown as string
+            correctAnswer: optionName as unknown as string
         }));
     };
 
     const handleAddQuestion = () => {
+        console.log(options)
         onAddQuestions(options);
         setOptions(optionsInitialState);
         setCurrentAnswerIndex(null);
@@ -62,6 +65,15 @@ const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionT
 
     return (
         <div className="nbg-secondary nw-full np-4 nrounded-md">
+
+
+            {
+                title && <div className="nbg-rose-400 ngap-2  np-1 nflex npx-4 nrounded-full">
+                    <Heading text="Topic :" />
+                    <Heading text={title} className="nfont-bold" />
+
+                </div>
+            }
             <div className="np-2">
                 <InputControl
                     label="Question"
@@ -74,7 +86,7 @@ const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionT
                         <InputControl
                             key={optionName}
                             name={optionName}
-                            // inputValue={options.options[index] || ""}
+                            inputValue={options.options[index] || ""}
                             label={optionName}
                             hintText={`Option ${optionName} ${index === 0 || index === 1 ? '*' : ''} `}
                             className={optionClass}
@@ -88,7 +100,7 @@ const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionT
                                 variant={"outline"}
                                 key={optionName}
                                 tabIndex={0}
-                                onClick={() => handleCorrectAnswerClick(index)}
+                                onClick={() => handleCorrectAnswerClick(optionName, index)}
                                 className={`nh-[26px] ntext-xs nflex nitems-center njustify-center nw-[26px] hover:nborder-background  nrounded-full  ${currentAnswerIndex === index ? 'nbg-brand' : ''}`}
                             >
                                 {optionName}
@@ -103,7 +115,7 @@ const CreateQuestions = ({ onAddQuestions }: { onAddQuestions: (value: QuestionT
 
                 </div>
                 <div className="nflex njustify-end">
-                    <Button disabled={isDisabled} onClick={handleAddQuestion} className="!nbg-background nmt-4 !ntext-primary">Add</Button>
+                    <Button onClick={handleAddQuestion} className="!nbg-background nmt-4 !ntext-primary">Add</Button>
                 </div>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { user } from './user'
 import { quiz } from './quizes'
 import { admin } from './admin'
-const moduleList = { user, quiz, admin }
+import { testSeries } from './testSeries'
+const moduleList = { user, quiz, admin, testSeries }
 export default moduleList

@@ -1,3 +1,4 @@
+
 import * as yup from "yup";
 
 const changePasswordSchema = yup.object().shape({
@@ -12,8 +13,20 @@ const changePasswordSchema = yup.object().shape({
 
 const createCourseSchema = yup.object().shape({
     question: yup.string().required("Question is filed is required")
-
-
+})
+const subjectFormSchema = yup.object().shape({
+    title: yup.string().required('Title is required'),
+    description: yup.string(),
+    price: yup.string(),
+    totalSet: yup.string(),
+    freeSet: yup.string()
+})
+const subjectTopicSchema = yup.object().shape({
+    title: yup.string().required('Title is required'),
+    isPaid: yup.boolean(),
+    totalQuestion: yup.number(),
+    totalMark: yup.number(),
+    timeDuration: yup.number()
 })
 
-export { changePasswordSchema, createCourseSchema }
+export { changePasswordSchema, createCourseSchema, subjectFormSchema, subjectTopicSchema }

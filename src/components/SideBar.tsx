@@ -22,7 +22,7 @@ const Sidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
     const location = useLocation()
     const NavItem = ({ name, icon, pathname, open }: { name: string, icon: React.ReactNode, pathname: string, open: boolean }) => (
         <NavLink to={pathname}>
-            <li className={`nflex  nrounded-lg  ${location.pathname === pathname ? 'nbg-secondary ntext-brand' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-secondary/50 ncursor-pointer transition-transform hover:nscale-105 duration-300`}>
+            <li className={`nflex nmx-4  nrounded-lg  ${location.pathname === pathname ? 'nbg-rose-400 ntext-primary' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-rose-400 ncursor-pointer transition-transform hover:nscale-105 duration-300`}>
 
                 <span className='ntext-lg'>{icon}</span>
                 {open && <span className='nwhitespace-no-wrap'>{name}</span>}

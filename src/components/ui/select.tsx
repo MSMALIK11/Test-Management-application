@@ -75,7 +75,7 @@ const SelectContent = React.forwardRef<
       className={cn(
         "nrelative nz-50 nmax-h-96 nmin-w-[8rem] noverflow-hidden nrounded-md nborder nbg-popover ntext-popover-foreground nshadow-md data-[state=open]:nanimate-in data-[state=closed]:nanimate-out data-[state=closed]:nfade-out-0 data-[state=open]:nfade-in-0 data-[state=closed]:nzoom-out-95 data-[state=open]:nzoom-in-95 data-[side=bottom]:nslide-in-from-top-2 data-[side=left]:nslide-in-from-right-2 data-[side=right]:nslide-in-from-left-2 data-[side=top]:nslide-in-from-bottom-2",
         position === "popper" &&
-          "data-[side=bottom]:ntranslate-y-1 data-[side=left]:n-translate-x-1 data-[side=right]:ntranslate-x-1 data-[side=top]:n-translate-y-1",
+        "data-[side=bottom]:ntranslate-y-1 data-[side=left]:n-translate-x-1 data-[side=right]:ntranslate-x-1 data-[side=top]:n-translate-y-1",
         className
       )}
       position={position}
@@ -86,7 +86,7 @@ const SelectContent = React.forwardRef<
         className={cn(
           "np-1",
           position === "popper" &&
-            "nh-[var(--radix-select-trigger-height)] nw-full nmin-w-[var(--radix-select-trigger-width)]"
+          "nh-[var(--radix-select-trigger-height)] nw-full nmin-w-[var(--radix-select-trigger-width)]"
         )}
       >
         {children}

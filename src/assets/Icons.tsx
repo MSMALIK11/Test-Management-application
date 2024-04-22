@@ -1,5 +1,6 @@
 import { AiOutlineDashboard } from "react-icons/ai";
-import { IoMdBook, IoMdTrash } from "react-icons/io";
+import { MdOutlinePlaylistAdd } from "react-icons/md";
+import { IoMdBook, IoMdTrash, IoMdAdd, IoMdAddCircle } from "react-icons/io";
 import { CiSettings, CiCircleInfo } from "react-icons/ci";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
@@ -29,7 +30,10 @@ export {
     IoWalletOutline,
     FaRegEdit,
     IoMdTrash,
-    CiCircleInfo
+    CiCircleInfo,
+    MdOutlinePlaylistAdd,
+    IoMdAdd,
+    IoMdAddCircle
 
 
 }
