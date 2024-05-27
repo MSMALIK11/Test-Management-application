@@ -126,7 +126,6 @@ const AddTopic = () => {
     // Insert Question
     const handleAddQuestion = async (data: QuestionType) => {
         try {
-            console.log('data', data, topicId)
             if (topicId) {
                 const res = await api.testSeries.indertQuestion(data, topicId)
                 if (res.status === 200) {

@@ -66,6 +66,7 @@ const AddNewCourse = () => {
                 }
                 {/* <CreateSets /> */}
                 <CoursePreviewList key={'course preview'} totalMarks={course.totalMarks} title={course.title} questions={course.questions} price={course.price} timeDuration={course.timeDuration} totalQuestions={course.totalMarks} description={course.description} />
+
             </div>
         </div>
     );

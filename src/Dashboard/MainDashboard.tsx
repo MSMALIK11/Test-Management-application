@@ -1,10 +1,10 @@
 // import { useQuery } from '@tanstack/react-query'
-import DataTable from './components/DataTable'
+import CourseViewList from './components/CourseViewList'
+import DataTable from './components/UsersViewList'
 import Header from './components/Header'
 import SalesAnalysis from "./components/SalesAnalysis"
 // import api from '@/services'
 const MainDashboard = () => {
-    // const { data, isLoading } = useQuery({ queryKey: ['getAllUsers'], queryFn: api.admin.getAllUsers })
 
     return (
         <div className="nw-full">
@@ -12,8 +12,9 @@ const MainDashboard = () => {
             <div className='np-4'>
                 <SalesAnalysis />
             </div>
-            <div className='np-4 nw-[50%]'>
-                {/* <DataTable isLoading={isLoading} key="users-table" data={data?.data.users} /> */}
+            {/* <BarChart /> */}
+            <div className='np-4 ngrid lg:ngrid-cols-2 ngap-4'>
+                <CourseViewList />
                 <DataTable />
             </div>
 

@@ -4,10 +4,11 @@ interface SubjectFormValues {
     price?: string | number;
     totalSet?: string | number;
     freeSet?: string | number;
+    isPaidCourse?: boolean,
 }
 interface TopicFormValues {
     title: string,
-    isPaid?: boolean,
+    isPaidCourse?: boolean,
     totalQuestion?: number,
     totalMark?: number,
     timeDuration?: number

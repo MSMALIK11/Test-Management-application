@@ -14,13 +14,13 @@ const UserDashboardLayouts = () => {
         <div className="nflex nw-full ">
 
 
-            <div className="nmax-w-[180px]">
+            <div className="nmax-w-[200px]">
                 <Sidebar items={userTopRoutes} bottomItems={userBottomRoutes} open={open} handleOpen={handleOpen} />
 
             </div>
 
             <motion.div className="nflex-1" animate={{
-                marginLeft: open ? "180px" : "60px",
+                marginLeft: open ? "200px" : "60px",
                 transition: {
                     duration: 0.5,
                     type: "spring",

@@ -1,9 +1,12 @@
 import AddNewCourse from "@/Dashboard/AddNewCourse";
-import AdminCourses from "@/Dashboard/AdminCourses";
+import QuizManagement from "@/Dashboard/QuizManagement";
 import MainDashboard from "@/Dashboard/MainDashboard";
 import DashboardLayouts from "@/layouts/DashboardLayouts";
 import AddTopic from "@/pages/DashboardPages/AddTopic";
 import TestSeries from "@/pages/TestSeries";
+import TestSeriesManagement from "@/Dashboard/TestManagement";
+import ViewSubject from "@/pages/DashboardPages/ViewSubject";
+import {Mains} from '@/pages/DashboardPages'
 export const adminRoutes = [
     {
         path: "/dashboard/admin",
@@ -26,8 +29,20 @@ export const adminRoutes = [
                 element: <AddNewCourse />
             },
             {
-                path: "/dashboard/admin/my-courses",
-                element: <AdminCourses />
+                path: "/dashboard/admin/subject/:id/view",
+                element: <ViewSubject />
+            },
+            {
+                path: "/dashboard/admin/mains",
+                element: <Mains />
+            },
+            {
+                path: "/dashboard/admin/quiz-management",
+                element: <QuizManagement />
+            },
+            {
+                path: "/dashboard/admin/test-management",
+                element: <TestSeriesManagement />
             },
         ]
     }

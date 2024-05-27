@@ -1,5 +1,5 @@
 interface HeadingProp {
-    text: string,
+    text: string | number | undefined,
     className?: string
 }
 const Heading = ({ text, className }: HeadingProp) => {

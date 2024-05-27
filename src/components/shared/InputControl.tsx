@@ -19,7 +19,7 @@ const InputControl = forwardRef(({ label, type, inputValue, onInputChange, hintT
 ) => {
     return (
         <div className={`nspace-y-1 ${className}`}>
-            <Label className='nflex ngap-1'>{label} </Label>
+            <Label className='nflex ngap-1 nmb-2'>{label} </Label>
             <Input ref={ref} type={type} value={inputValue} onChange={onInputChange} placeholder={hintText} name={name} {...rest} />
             {
                 errorMessage && <div className='nflex njustify-end'>

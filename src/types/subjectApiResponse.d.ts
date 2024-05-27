@@ -13,8 +13,9 @@ export interface Topic {
     subjectId: string;
     title: string;
     totalQuestion: number;
-    duration: number;
+    duration: string | number;
     totalMark: number;
+    isPaid?: boolean,
     totalAttempt: number;
     __v: number;
     questions: Question[];
@@ -28,7 +29,7 @@ export interface SubjectData {
 
 export interface SubjectApiResponse {
     title: string;
-    totalQuestion: any;
+    totalQuestion: number | string;
     _id: string | number;
     questions: Question[];
     success: boolean;

@@ -3,6 +3,7 @@ import MyCourses from "@/UserDashboard/MyCourses";
 import Settings from "@/UserDashboard/Settings";
 import Wallet from "@/UserDashboard/Wallet";
 import UserDashboardLayouts from "@/layouts/UserDashboardlayout";
+import UserMains from "@/UserDashboard/pages/UserMains";
 export const userRoutes = [
     {
         path: '/profile',
@@ -13,12 +14,16 @@ export const userRoutes = [
                 element: <Home />
             },
             {
-                path: '/profile/my-wallet',
-                element: <Wallet />
-            },
-            {
                 path: '/profile/my-courses',
                 element: <MyCourses />
+            },
+            {
+                path: '/profile/mains',
+                element: <UserMains />
+            },
+            {
+                path: '/profile/my-wallet',
+                element: <Wallet />
             },
             {
                 path: '/profile/settings',

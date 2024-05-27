@@ -30,12 +30,13 @@ const TestSeries = () => {
         formState: { errors },
     } = methods;
     const onFormSubmit = async (data: SubjectFormValues) => {
-        setFormData(data)
+        setFormData({ ...data, isPaidCourse: isChecked })
         setShowAlert(true);
 
     };
     const onIsPaidChange = (checked: boolean) => {
         setIsCehcked(checked);
+
     };
     const onCloseAlert = () => {
         setShowAlert(false);
@@ -80,10 +81,12 @@ const TestSeries = () => {
     }
     return (
         <div className="np-4">
+
             <Heading text="Create Subject" />
+
             <form
                 onSubmit={handleSubmit(onFormSubmit)}
-                className="nmt-6  np-4 nw-1/2 nspace-y-4 nborder-2 nborder-secondary"
+                className="nmt-6  np-4 nw-1/2 nspace-y-4 nborder-2 nborder-secondary nbg-secondary nrounded-md"
             >
                 <InputControl
                     {...register("title")}

@@ -13,7 +13,7 @@ interface ModalProp {
 }
 const Modal = ({ onClick, isVisible, onClose, children }: ModalProp) => {
     return (
-        <Dialog open={isVisible} onOpenChange={onClose}>
+        <Dialog  open={isVisible} onOpenChange={onClose}>
             {/* <DialogTrigger asChild>
                 <Button variant="outline">Edit Profile</Button>
             </DialogTrigger> */}

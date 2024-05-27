@@ -12,8 +12,10 @@ import {
     IoChatbubbleEllipsesOutline,
     IoInformationCircleOutline,
     IoMdBook,
-    IoWalletOutline
+    IoWalletOutline,
+    BsFileEarmarkPdf
 } from "@/assets/Icons";
+import { TbAdjustmentsQuestion } from "react-icons/tb";
 import {
     totlaCourseIcon,
     totalSalesIcon,
@@ -228,9 +230,19 @@ export const adminTopRoutes = [
         icon: <AiOutlineDashboard />,
     },
     {
-        path: "/dashboard/admin/my-courses",
-        name: "My Courses",
+        path: "/dashboard/admin/test-management",
+        name: "Test Management",
+        icon: <TbAdjustmentsQuestion />,
+    },
+    {
+        path: "/dashboard/admin/quiz-management",
+        name: "Quiz Management",
         icon: <IoMdBook />,
+    },
+    {
+        path: "/dashboard/admin/mains",
+        name: "Mains",
+        icon: <BsFileEarmarkPdf />,
     },
     {
         path: "/dashboard/admin/messages",
@@ -263,7 +275,7 @@ export const adminBottomRoutes = [
 ]
 
 // =============================================
-// =================User Routes================
+// =================Student Dasboard Routes================
 export const userTopRoutes = [
     {
         path: "/profile",
@@ -271,16 +283,21 @@ export const userTopRoutes = [
         icon: <AiOutlineDashboard />,
     },
     {
+        path: "/profile/my-courses",
+        name: "My Courses",
+        icon: <CiBadgeDollar />,
+    },
+    {
+        path: "/profile/mains",
+        name: "Mains",
+        icon: <BsFileEarmarkPdf />,
+    },
+    {
         path: "/profile/my-wallet",
         name: "My Wallet",
         icon: <IoWalletOutline />,
     },
 
-    {
-        path: "/profile/my-courses",
-        name: "My Courses",
-        icon: <CiBadgeDollar />,
-    },
     {
         path: "/profile/settings",
         name: "Settings",

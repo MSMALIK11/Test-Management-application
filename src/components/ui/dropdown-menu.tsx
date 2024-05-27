@@ -29,7 +29,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "nflex ncursor-default  nselect-none nitems-center nrounded-sm npx-2 npy-1.5 ntext-sm noutline-none focus:nbg-accent data-[state=open]:nbg-accent",
+      "nflex ncursor-default nw-[140px]  nselect-none nitems-center nrounded-sm npx-2 npy-1.5 ntext-sm noutline-none focus:nbg-accent data-[state=open]:nbg-accent",
       inset && "npl-8",
       className
     )}

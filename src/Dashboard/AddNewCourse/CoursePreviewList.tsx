@@ -12,8 +12,10 @@ const CoursePreviewList = ({ description, questions, price, timeDuration, title,
     const onToggleView = () => {
         setShow(!show)
     }
+
     return (
         <div className="nbg-secondary nrelative nw-full np-4">
+
             {
                 !title ? <EmptyView title="Add Course to View" />
                     :
@@ -54,17 +56,16 @@ const CoursePreviewList = ({ description, questions, price, timeDuration, title,
                                         <h1>{index + 1}. {question.question}  </h1>
                                         <Edit size={12} />
                                     </div>
+
                                     <Each of={question.options}
                                         render={(op) =>
                                             <InputControl className={`${op.value == question?.correctAnswer ? 'nbg-brand' : ''}`} inputValue={op.value} readonly />} />
                                     <TextMarkDown text={question?.explanation || ""} />
+
                                 </div>
 
                                 } />
                                 {/* <TextMarkDown markdownText={ } /> */}
-
-
-
 
 
 

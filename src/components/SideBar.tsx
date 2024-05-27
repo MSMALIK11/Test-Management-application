@@ -21,8 +21,8 @@ interface Prop {
 const Sidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
     const location = useLocation()
     const NavItem = ({ name, icon, pathname, open }: { name: string, icon: React.ReactNode, pathname: string, open: boolean }) => (
-        <NavLink to={pathname}>
-            <li className={`nflex nmx-4  nrounded-lg  ${location.pathname === pathname ? 'nbg-rose-400 ntext-primary' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-rose-400 ncursor-pointer transition-transform hover:nscale-105 duration-300`}>
+        <NavLink to={pathname} title={name}>
+            <li className={`nflex nmx-4   nrounded-lg  ${location.pathname === pathname ? 'nbg-secondary ntext-primary' : ''} npx-4 npy-2 ngap-4 nitems-center hover:nbg-secondary/70 ncursor-pointer transition-transform hover:nscale-105 duration-300`}>
 
                 <span className='ntext-lg'>{icon}</span>
                 {open && <span className='nwhitespace-no-wrap'>{name}</span>}
@@ -31,7 +31,7 @@ const Sidebar = ({ open, handleOpen, items, bottomItems }: Prop) => {
     );
     return (
         <motion.div id='admin-side-nav' animate={{
-            width: open ? "180px" : "60px",
+            width: open ? "210px" : "80px",
             transition: {
                 duration: 0.5,
                 type: "spring",

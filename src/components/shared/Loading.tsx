@@ -5,8 +5,8 @@ const Loading = ({ isLoading }: { isLoading: boolean }) => {
     return (
         <>
             {isLoading && (
-                <div className='nw-full nh-screen'>
-                    <div className="nabsolute ntop-[50%] nleft-[50%] nright-0 nbottom-0 nbg-gray-800 nbg-opacity-50 nflex nitems-center njustify-center ntext-white">
+                <div id='loading' className='nw-full nh-screen nflex-1 '>
+                    <div className=" nh-screen nbg-opacity-50 nflex nitems-center njustify-center ntext-white">
                         <Loader2 className="nmr-2 nh-4 nw-4 nanimate-spin" />
                         <span>Loading...</span>
                     </div>

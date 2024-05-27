@@ -13,12 +13,12 @@ interface InputProp {
     value?: string | number,
     errorMessage?: string
 }
-const InputNumberControl = ({ label, value, checked, errorMessage, type, hintText, name, readOnly, onInputChange, ...rest }: InputProp) => {
+const InputNumberControl = ({ label, value, checked, errorMessage, hintText, name, readOnly, onInputChange, ...rest }: InputProp) => {
     return (
         <div className='nspace-y-1'>
             <Label>{label}</Label>
             <div>
-                <Input type={type} name={name} value={value} readOnly={readOnly} checked={checked} placeholder={hintText} onChange={onInputChange} {...rest} />
+                <Input type={"number"} name={name} value={value !== undefined ? value : ''} readOnly={readOnly} checked={checked} placeholder={hintText} onChange={onInputChange} {...rest} />
                 {
                     errorMessage && <div className='nflex njustify-end'>
                         <p className='ntext-xs nflex nitems-center ntext-red-500 ngap-1'><BiInfoCircle size={16} />{errorMessage}</p>

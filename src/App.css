@@ -358,7 +358,7 @@ position: relative;
   }
   #home-bannar:nth-child(2){
     order: 1;
-  },
+  }
   #prelims-container h4{
     background: red;
   }
@@ -391,9 +391,34 @@ position: relative;
 }
 
 
-.loading{
-  position: absolute;
-  top:0;
-  left: 50%;
-  transform: translateY(50%,50%);
+#loading{
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(100px);
+ 
 }
+
+#custom-button{
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  position: relative;
+  transition: all 0.1s ease-in;
+
+}
+#custom-button:hover {
+  background-color:rgba(0, 0, 0, 0.303);
+}
+#custom-button:active {
+  transform: scale(0.995);
+  background-color:rgba(113, 108, 108, 0.179);
+ 
+}
+
+.react-pdf__Page__textContent.textLayer {
+  height: 400px !important;
+}
+

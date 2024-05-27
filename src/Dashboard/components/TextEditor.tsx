@@ -1,8 +1,13 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const TextEditor = ({ onChange }: { onChange: (value: string) => void }) => {
+interface EditorProp {
+    onChange: (value: string) => void,
+    value: string,
+}
+
+const TextEditor = ({ onChange, value }: EditorProp) => {
     const [text, setText] = useState("")
 
     const onChangeText = (val: string) => {
@@ -10,7 +15,10 @@ const TextEditor = ({ onChange }: { onChange: (value: string) => void }) => {
         setText(val)
         onChange(text)
     }
+    useEffect(() => {
+        setText(value)
 
+    }, [value])
     return (
         <div id='text-editor'>
             <h1 className='nmb-1'>Description</h1>

@@ -16,6 +16,7 @@ import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
 import { errorHandler } from '@/helpers/errorHandler'
 import { Button } from "@/components/ui/button"
 
+
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
@@ -40,16 +41,15 @@ import api from '@/services'
 import toast from "react-hot-toast"
 import type { SubjectType } from "@/types/CourseType"
 import Header from "./components/Header"
-const DataTable = () => {
+const QuizManagement = () => {
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
     const { data, isLoading } = useQuery({ queryKey: ["getAllAdminCourse"], queryFn: api.quiz.getAllQuizesCourse })
-    const courseList = data && data?.data
-    const courseData: SubjectType[] = (courseList && courseList.courses) || [];
+    const courseData = data && data.courses
     const queryClient = useQueryClient()
-
+    // console.log('data',)
     const mutation = useMutation({
         mutationKey: ['updateuser'], mutationFn: ({ id, body }: { id: string, body: { role: string } }) => api.admin.updateRole(id, body),
         onSuccess: (res) => {
@@ -267,15 +267,4 @@ const DataTable = () => {
         </div>
     )
 }
-
-
-export default DataTable
-
-
-// const AdminCourses = () => {
-//     return (
-//         <div>AdminCourses</div>
-//     )
-// }
-
-// export default AdminCourses
+export default QuizManagement

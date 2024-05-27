@@ -1,25 +1,60 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// components/BarChart.js
-import { Bar } from "react-chartjs-2";
-export const BarChart = ({ chartData }: { chartData: any }) => {
-    console.log('chartData', chartData)
-    return (
-        <div className="chart-container">
-            <h2 style={{ textAlign: "center" }}>Bar Chart</h2>
-            <Bar
-                data={chartData}
-                options={{
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: "Users Gained between 2016-2020"
-                        },
-                        legend: {
-                            display: false
-                        }
-                    }
-                }}
-            />
-        </div>
-    );
+
+import {
+    Chart as ChartJS,
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend,
+} from 'chart.js';
+import { Bar } from 'react-chartjs-2';
+
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
+);
+
+const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+            position: 'top' as const,
+        },
+        title: {
+            display: true,
+            text: 'Chart.js Bar Chart',
+        },
+    },
+    maintainAspectRatio: true,
 };
+
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+const data = {
+    labels,
+    datasets: [
+        {
+            label: 'Dataset 1',
+            data: [10, 30, 40],
+            backgroundColor: 'orange',
+        },
+        {
+            label: 'Dataset 2',
+            data: [20, 10, 30, 40],
+            backgroundColor: 'green',
+        },
+    ],
+
+};
+
+const BarChart = () => {
+    return <Bar options={options} data={data} />;
+}
+
+export default BarChart

@@ -31,6 +31,7 @@ export interface SubjectType {
     freeSets?: number,
     totalAttempt?: number,
     _id?: string,
+    isPublish?: boolean,
     questions?: QuestionType
 }
 interface Option {

@@ -12,12 +12,12 @@ const DashboardLayouts = () => {
 
     return (
         <div className="nflex nw-full ">
-            <div className="nmax-w-[180px]">
+            <div className="nmax-w-[210px]">
                 <Sidebar items={adminTopRoutes} bottomItems={adminBottomRoutes} open={open} handleOpen={handleOpen} />
             </div>
 
             <motion.div className="nflex-1" animate={{
-                marginLeft: open ? "180px" : "60px",
+                marginLeft: open ? "210px" : "80px",
                 transition: {
                     duration: 0.5,
                     type: "spring",

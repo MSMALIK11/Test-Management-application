@@ -1,6 +1,6 @@
 import InputControl from "@/components/shared/InputControl";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import UploadImage from "../components/UploadImage";
 import TextEditor from "../components/TextEditor";
 import { QuestionType } from "@/types/CourseType";
@@ -111,6 +111,10 @@ const CreateQuestions = ({ onAddQuestions, title }: { onAddQuestions: (value: Qu
 
                 <div className="nspace-y-4 nmt-4">
                     <TextEditor onChange={onExplanationChange} />
+                    {/* <div className="nspace-y-2">
+                        <Label>Expqlanation</Label>
+                        <Textarea rows={6} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onExplanationChange(e.target.value)} />
+                    </div> */}
                     <UploadImage />
 
                 </div>

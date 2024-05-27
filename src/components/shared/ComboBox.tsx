@@ -31,7 +31,7 @@ const ComboBox = ({ options, label, onSelectChange, hintText = "Please choose...
     }
     return (
         <>
-            <Label className="">{label}</Label>
+            <Label className="nmb-[4px]">{label}</Label>
             <Select onValueChange={onChangeSelection} value={val.toString()}>
                 <SelectTrigger>
                     <SelectValue placeholder={hintText ?? hintText} />

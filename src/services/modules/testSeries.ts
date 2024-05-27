@@ -2,6 +2,8 @@ import { SubjectFormValues } from "@/types/testSeries";
 import { tmsService } from "../http";
 import { API } from '@/config/apiEndpoint'
 import { QuestionType } from "@/types/CourseType";
+import { GetAllTestSeriesApiResponse } from "@/types/getAllTestSeriesApiResponse";
+import { Question } from "@/types/subjectApiResponse";
 export const testSeries = {
     async addSubject(payload: SubjectFormValues) {
         return await tmsService.post(API.ADD_SUBJECT_API_URL, payload)
@@ -26,5 +28,35 @@ export const testSeries = {
         return tmsService.delete(`admin/test-series/topic/${id}`)
 
     },
+    async getAllTestSeries(): Promise<GetAllTestSeriesApiResponse> {
+        const res = await tmsService.get(`admin/test-series/getAllTestSeries`)
+        return res.data
+
+    },
+    async deleteSubject(id: string) {
+        return await tmsService.delete(`/admin/test-series/subject/${id}`)
+
+    },
+    async publishTestSeries(id: string) {
+        return await tmsService.put(`/admin/test-series/subject/${id}/publish`)
+
+    },
+    async privateTestSeries(id: string) {
+        return await tmsService.put(`/admin/test-series/subject/${id}/private`)
+
+    },
+    async updateQuestion(payload: Question | null) {
+        return await tmsService.put(`/admin/test-series/topic/question/update`, payload)
+
+    },
+    async updateTopic(id: string, payload: { title: string, totalMark: number, totalQuestion: number | string, duration: number | string }) {
+        return await tmsService.put(`/admin/test-series/topic/${id}`, payload)
+
+    },
+    async getPublishTestSeries() {
+        const res = await tmsService.get('/test-series/published')
+        return res.data
+
+    }
 
 }

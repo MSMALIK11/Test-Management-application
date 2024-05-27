@@ -23,6 +23,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { setAllQuizLists, setCurrentQuiz } from "@/store/features/quizSlice";
 import { CourseType } from "@/types/CourseType";
+import Prelims from "./Prelims";
 const PrelimsTabs = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
@@ -42,13 +43,12 @@ const PrelimsTabs = () => {
     }, [isLoading])
     return (
         <>
-            <Tabs defaultValue="UPSC CSE - Prelims"  >
+            <Prelims />
+            {/* <Tabs defaultValue="UPSC CSE - Prelims"  >
                 <TabsList className="grid w-full grid-cols-2" >
                     <TabsTrigger value="UPSC CSE - Prelims">UPSC CSE - Prelims</TabsTrigger>
                     <TabsTrigger value="KAS - Prelims">KAS - Prelims</TabsTrigger>
                 </TabsList>
-
-
             </Tabs >
             <div className="nmt-4 ngrid ngrid-cols-3">
                 <Each of={courses} render={({ title, _id, description, timeDuration, totalMarks, totalQuestions, price }) =>
@@ -75,9 +75,7 @@ const PrelimsTabs = () => {
                                     }
 
                                 </div>
-                                {/* <div className="nbg-secondary nmt-4 nrounded-lg  ninline-block npx-2 npy-1.5  nshadow-sm">
-                                <p className="nflex ngap-2 nitems-center ntext-sm"><BiLike size={20} /> {likes} Likes</p>
-                            </div> */}
+
                             </div>
 
                         </CardContent>
@@ -86,8 +84,7 @@ const PrelimsTabs = () => {
                         </CardFooter>
                     </Card>
                 } />
-            </div>
-
+            </div> */}
             <Loading isLoading={isLoading} />
         </>
     )
