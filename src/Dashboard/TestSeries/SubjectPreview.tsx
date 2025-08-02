@@ -114,111 +114,110 @@ const SubjectPreview = ({ handleEnableQuestionAddition, handeShowAddNewTopicForm
 
         }
         return (
-            <div className='nbg-background nrelative nmb-4 np-4 rounded-sm shadow-lg nborder-l-4 nborder-rose-400 nrounded-lg'>
-                <div className='nabsolute nright-1'>
-                    <Button onClick={() => onOpenEditTopicModal(id)} size={"icon"} variant={"ghost"} title='Edit'>
-                        <FaRegEdit size={22} />
-                    </Button>
-                    <Button size="icon" variant={'ghost'} title='Delete Topic' onClick={() => handleDeleteTopic(id)}>
-                        <IoMdTrash size={22} />
-                    </Button>
-                </div>
-                <div className='ngrid  md:ngrid-cols-2 lg:ngrid-cols-3 ngap-4'>
-                    <div>
-                        <p>Total Question</p>
-                        <Badge>
-                            {totalQuestion}
-                        </Badge>
+           <div className='nbg-background nrelative nmb-4 np-4 nrounded-md nshadow-md nborder-l-4 nborder-brand'>
+    {/* Top Right Action Buttons */}
+    <div className='nabsolute nright-2 ntop-2 nflex ngap-2'>
+        <Button onClick={() => onOpenEditTopicModal(id)} size="icon" variant="ghost" title="Edit">
+            <FaRegEdit size={20} />
+        </Button>
+        <Button onClick={() => handleDeleteTopic(id)} size="icon" variant="ghost" title="Delete Topic">
+            <IoMdTrash size={20} />
+        </Button>
+    </div>
 
+    {/* Stats Overview */}
+    <div className='ngrid md:ngrid-cols-2 lg:ngrid-cols-4 ngap-4 nmt-4'>
+        <div>
+            <p className='ntext-xs ntext-muted-foreground'>Total Question</p>
+            <Badge>{totalQuestion}</Badge>
+        </div>
+        <div>
+            <p className='ntext-xs ntext-muted-foreground'>Duration</p>
+            <Badge>{duration} mins</Badge>
+        </div>
+        <div>
+            <p className='ntext-xs ntext-muted-foreground'>Total Mark</p>
+            <Badge>{totalMark}</Badge>
+        </div>
+        <div>
+            <p className='ntext-xs ntext-muted-foreground'>Price</p>
+            <Badge primary={isPaid}>{isPaid ? 'Paid' : 'Free'}</Badge>
+        </div>
+    </div>
+
+    {/* Accordion for Questions */}
+    {title && (
+        <Accordion type="single" collapsible className="nmt-6">
+            <AccordionItem value="item-1">
+                <AccordionTrigger>
+                    <div className='nflex nitems-center ngap-3'>
+                        <Heading text={title} />
+                        <IoMdAddCircle size={20} className='ntext-muted-foreground hover:ntext-primary' onClick={onAddClick} />
                     </div>
-                    <div>
-                        <p>Duration</p>
-                        {duration && <Badge>
-                            {duration}  mins
-                        </Badge>}
-
-
-                    </div>
-                    <div>
-                        <p>Total Mark</p>
-                        <Badge>
-                            {totalMark}
-                        </Badge>
-
-                    </div>
-
-                    <div>
-                        <p>Price</p>
-                        <Badge primary={isPaid}>
-                            {isPaid ? 'Paid' : 'Free'}
-                        </Badge>
-                    </div>
-                </div>
-                {
-                    title && <Accordion type="single" collapsible className="w-full">
-                        <AccordionItem value="item-1">
-
-                            <AccordionTrigger>
-                                <div className='nflex nitems-center ngap-4' title="Clcik to insert question in this topic">
-                                    <Heading text={title} /> <IoMdAddCircle size={22} onClick={onAddClick} /> </div></AccordionTrigger>
-                            <AccordionContent>
-                                <Each of={(questions)} render={(item, index) => <div key={item?._id}>
-
-                                    <div className='nflex nitems-center njustify-between  nmb-4'>
-                                        <div className='nflex nitems-center ngap-1'>
-                                            <p className={badgeClass}>{index + 1}</p>
-                                            <Heading text={item.question} />
-                                        </div>
-                                        <div>
-                                            <Button variant={"ghost"}>
-                                                <FaRegEdit size={22} />
-                                            </Button>
-                                            <Button title='Delete Question' variant={"ghost"} onClick={() => handleDeleteQuestion(item._id)}>
-                                                <IoMdTrash size={22} />
-                                            </Button>
-
-
-                                        </div>
-
+                </AccordionTrigger>
+                <AccordionContent>
+                    <Each
+                        of={questions}
+                        render={(item, index) => (
+                            <div key={item._id} className='nmt-4 npb-4 nborder-b '>
+                                {/* Question Header */}
+                                <div className='nflex nitems-center njustify-between nmb-3'>
+                                    <div className='nflex nitems-center ngap-2'>
+                                        <Badge>{index + 1}</Badge>
+                                        <Heading text={item.question} />
                                     </div>
-                                    <Each of={item.options} render={(op) =>
+                                    <div className='nflex ngap-2'>
+                                        <Button variant="ghost" size="icon">
+                                            <FaRegEdit size={18} />
+                                        </Button>
+                                        <Button variant="ghost" size="icon" title="Delete Question" onClick={() => handleDeleteQuestion(item._id)}>
+                                            <IoMdTrash size={18} />
+                                        </Button>
+                                    </div>
+                                </div>
+
+                                {/* Options */}
+                                <Each
+                                    of={item.options}
+                                    render={(op) => (
                                         <div key={op}>
                                             <InputControl inputValue={op} readonly />
-                                        </div>} />
-                                    <div className='nflex nitems-center ngap-4 nmy-4'>
-                                        <Heading text="Correct Ans" />
-                                        <span className={badgeClass}>{item.correctAnswer}</span>
-
-
-                                    </div>
-                                    <div>
-                                        <Label>Expalanation:</Label>
-                                        <div className='nborder-primary npx-4'>
-                                            <TextMarkDown text={item.explanation} />
-
                                         </div>
+                                    )}
+                                />
+
+                                {/* Correct Answer */}
+                                <div className='nflex nitems-center ngap-3 nmt-4'>
+                                    <Label>Correct Answer:</Label>
+                                    <Badge>{item.correctAnswer}</Badge>
+                                </div>
+
+                                {/* Explanation */}
+                                <div className='nmt-4'>
+                                    <Label>Explanation:</Label>
+                                    <div className='nborder nborder-border nrounded-md npx-4 npy-2 nmt-1'>
+                                        <TextMarkDown text={item.explanation} />
                                     </div>
+                                </div>
+                            </div>
+                        )}
+                    />
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
+    )}
 
-                                </div>} />
+    {/* Delete Topic Alert */}
+    <Alert
+        open={showDeleteTopicAlert}
+        isConfirmBtnVisible
+        confirmBtnText={localizationEN.delete}
+        onClose={onCloseAlert}
+        message={localizationEN.deleteTopicMessage}
+        onConfirm={onTopicDeleteConfirm}
+    />
+</div>
 
-                            </AccordionContent>
-                        </AccordionItem>
-
-
-                    </Accordion>
-                }
-
-                <Alert
-                    open={showDeleteTopicAlert}
-
-                    isConfirmBtnVisible={true}
-                    confirmBtnText={localizationEN.delete}
-                    onClose={onCloseAlert}
-                    message={localizationEN.deleteTopicMessage}
-                    onConfirm={onTopicDeleteConfirm}
-                />
-
-            </div>
         )
     }
     const handlePublish = async () => {
@@ -237,44 +236,64 @@ const SubjectPreview = ({ handleEnableQuestionAddition, handeShowAddNewTopicForm
         }
 
     }
-    return (
-        <div className='nrelative'>
-            {
-                subject && <div className=' nh-screen'>
-                    <div className='np-4 nborder-b-2 nborder-background nflex njustify-between'>
-                        <div className='nflex nitems-center ngap-2'>
-
-                            <Heading text="Subject :" />
-                            <Heading className='nfont-bold' text={subject?.subject} />
-                        </div>
-                        <div className='nflex ngap-4'>
-                            <Button onClick={handeShowAddNewTopicForm} className='nbg-rose-400 hover:nbg-rose-500 !ntext-primary'>Add New Topic</Button>
-                            <Button onClick={handlePublish} className='nbg-rose-400 hover:nbg-rose-500 !ntext-primary'>Publish</Button>
-
-                        </div>
+   return (
+    <div className='nrelative'>
+        {subject && (
+            <div className='nh-screen nflex nflex-col'>
+                {/* Subject Header */}
+                <div className='np-4 nborder-b nborder-border nflex nitems-center njustify-between nbg-background'>
+                    <div className='nflex nitems-center ngap-2'>
+                        <Heading text="Subject:" />
+                        <Heading text={subject.subject} className='nfont-semibold' />
                     </div>
-
-                    {
-                        topics?.length > 0 ? <div className='np-4 nh-[90vh] noverflow-y-auto noverflow-hidden'>
-                            <p className='ntext-2xl nmb-2'>Topics:</p>
-                            <Each of={topics} render={(item) => <QuestionPreview title={item?.title} isPaid={item.isPaid} totalQuestion={item.totalQuestion} totalMark={item.totalMark} id={item._id} duration={item.duration} questions={item.questions} />} />
-                        </div> : <EmptyView title='Topics not found' subTitle='Please add to view' />
-                    }
-
+                    <div className='nflex ngap-3'>
+                        <Button
+                            onClick={handeShowAddNewTopicForm}
+                            variant={"secondary"}
+                        >
+                            Add New Topic
+                        </Button>
+                        <Button
+                            onClick={handlePublish}
+                        >
+                            Publish
+                        </Button>
+                    </div>
                 </div>
-            }
 
+                {/* Topics Section */}
+                {topics?.length > 0 ? (
+                    <div className='np-4 nh-[90vh] noverflow-y-auto'>
+                        <p className='ntext-xl nfont-semibold nmb-3'>Topics:</p>
+                        <Each
+                            of={topics}
+                            render={(item) => (
+                                <QuestionPreview
+                                    key={item._id}
+                                    title={item?.title}
+                                    isPaid={item.isPaid}
+                                    totalQuestion={item.totalQuestion}
+                                    totalMark={item.totalMark}
+                                    id={item._id}
+                                    duration={item.duration}
+                                    questions={item.questions}
+                                />
+                            )}
+                        />
+                    </div>
+                ) : (
+                    <EmptyView title='Topics not found' subTitle='Please add to view' />
+                )}
+            </div>
+        )}
 
+        {/* Edit Topic Dialog */}
+        <Dialog open={isEditTopicModelVisible}>
+            <CreateTopic />
+        </Dialog>
+    </div>
+);
 
-            {/* <div className='nrelative'>
-                <Loading isLoading={isLoading} />
-            </div> */}
-            <Dialog open={isEditTopicModelVisible}>
-                <CreateTopic />
-
-            </Dialog>
-        </div>
-    )
 }
 
 export default SubjectPreview

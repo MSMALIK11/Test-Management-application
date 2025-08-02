@@ -9,13 +9,12 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "nbg-brand   ntext-primary-foreground hover:nbg-brand/90",
+        default: "nbg-brand   ntext-white hover:nbg-brand/90",
         destructive:
           "nbg-destructive ntext-destructive-foreground hover:nbg-destructive/90",
         outline:
           "nborder nborder-input nbg-background hover:nbg-accent hover:ntext-accent-foreground",
-        secondary:
-          "!nbg-rose-400 active:!ntext-rose-500 ntext-secondary-foreground hover:!nbg-rose-500",
+        secondary: "!nbg-secondary hover:!nbg-secondary/80 ntext-secondary-foreground focus-visible:!ring-2 focus-visible:!ring-ring transition-colors duration-200 ease-in-out",
         ghost: "hover:nbg-accent hover:ntext-accent-foreground",
         link: "ntext-primary nunderline-offset-4 hover:nunderline",
       },

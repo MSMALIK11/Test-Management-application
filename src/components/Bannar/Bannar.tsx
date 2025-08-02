@@ -1,17 +1,51 @@
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
-import { Label } from '../ui/label'
 const Bannar = () => {
-    return (
-        <div id='home-bannar' className='ngrid  nitems-center njustify-center   lg:nh-[80vh] md:nh-[40vh] sm:h-[20vh] nh-auto noverflow-y-hidden lg:npx-14 nw-full ntext-center'>
-            <div className=' '>
-                <h4 className='lg:ntext-6xl md:ntext-3xl ntext-4xl sm:ntext-lg nfont-bold'>Challenge Yourself, <br /> Expand Your <span className='lg:ntext-6xl md:ntext-3xl sm:ntext-lg ntext-blue-500'>Knowledge!</span></h4>
-                <Label className='ntext-muted-forground nmt-2 '>Get your answers evaluated by Interview-Appeared faculty</Label>
-            </div>
-            {/* <div className='bannar-image sm:order-1 norder-2 nflex nitems-start nrelative  '>
+  return (
+    <section
+      id="home-bannar"
+      className="nrelative nflex nitems-center njustify-center ntext-center nw-full noverflow-hidden npx-4 sm:npx-6 lg:npx-14 nh-[60vh] sm:nh-[70vh] lg:nh-[80vh]"
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="nspace-y-5 nmax-w-3xl"
+      >
+        <h1 className="ntext-3xl sm:ntext-4xl md:ntext-5xl lg:ntext-6xl nfont-extrabold nleading-tight tracking-tight">
+          Challenge Yourself, <br />
+          <motion.span
+            initial={{ scale: 0.95 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
+            className="ntext-blue-500"
+          >
+            Expand Your Knowledge!
+          </motion.span>
+        </h1>
 
-                <img src={BannarImage} alt="" className='nobject-cove nh-full  lg:nmt-8 ' />
-            </div> */}
-        </div>
-    )
-}
-export default Bannar
+        <Label className="ntext-muted-foreground ntext-base sm:ntext-lg">
+          Get your answers evaluated by Interview-Appeared faculty
+        </Label>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9 }}
+          className="nmt-6"
+        >
+          <Button
+            variant="default"
+            className="nrounded-lg npx-6 ntext-white npy-3 ntext-base nfont-medium"
+          >
+            Start Learning →
+          </Button>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
+export default Bannar;

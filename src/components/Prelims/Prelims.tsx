@@ -28,21 +28,21 @@ const Prelims = () => {
     const dispatch = useDispatch()
     const navigation = useNavigate()
     const { data, isLoading } = useQuery({ queryKey: ['GetPublishTestSeriesApiResponse'], queryFn: api.testSeries.getPublishTestSeries })
-    // const courses = (data?.courses ?? []) as CourseType[];
+    const courses = (data?.courses ?? []) as CourseType[];
     const testSeriesList = data && data.data
     console.log(testSeriesList)
     // console.log('setCurrentQuiz', courses)
-    // const handleQuiz = (id: string) => {
-    //     if (courses) {
-    //         const selectedQuiz = courses?.find((quiz) => quiz._id === id)
-    //         dispatch(setCurrentQuiz(selectedQuiz))
-    //         navigation(`/prelims/start-quiz/${id}`)
-    //     }
-    // }
+    const handleQuiz = (id: string) => {
+        if (courses) {
+            const selectedQuiz = courses?.find((quiz) => quiz._id === id)
+            dispatch(setCurrentQuiz(selectedQuiz))
+            navigation(`/prelims/start-quiz/${id}`)
+        }
+    }
 
-    // useEffect(() => {
-    //     dispatch(setAllQuizLists(courses))
-    // }, [isLoading])
+    useEffect(() => {
+        dispatch(setAllQuizLists(courses))
+    }, [isLoading])
     return (
         <>
             <Tabs defaultValue="UPSC CSE - Prelims"  >

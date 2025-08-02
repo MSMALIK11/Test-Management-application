@@ -68,7 +68,7 @@ const CreateQuestions = ({ onAddQuestions, title }: { onAddQuestions: (value: Qu
 
 
             {
-                title && <div className="nbg-rose-400 ngap-2  np-1 nflex npx-4 nrounded-full">
+                title && <div className="nbg-background  np-2 nmb-4 nflex npx-4 nrounded-full">
                     <Heading text="Topic :" />
                     <Heading text={title} className="nfont-bold" />
 
@@ -110,7 +110,7 @@ const CreateQuestions = ({ onAddQuestions, title }: { onAddQuestions: (value: Qu
                 </div>
 
                 <div className="nspace-y-4 nmt-4">
-                    <TextEditor onChange={onExplanationChange} />
+                    <TextEditor onChange={onExplanationChange} value={""} />
                     {/* <div className="nspace-y-2">
                         <Label>Expqlanation</Label>
                         <Textarea rows={6} onChange={(e: ChangeEvent<HTMLTextAreaElement>) => onExplanationChange(e.target.value)} />
@@ -118,8 +118,8 @@ const CreateQuestions = ({ onAddQuestions, title }: { onAddQuestions: (value: Qu
                     <UploadImage />
 
                 </div>
-                <div className="nflex njustify-end">
-                    <Button onClick={handleAddQuestion} className="!nbg-background nmt-4 !ntext-primary">Add</Button>
+                <div className="nflex njustify-end nmt-4">
+                    <Button onClick={handleAddQuestion} variant={"default"}>Add</Button>
                 </div>
             </div>
         </div>

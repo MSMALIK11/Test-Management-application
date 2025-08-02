@@ -108,7 +108,7 @@ const AddTopic = () => {
                             <Switch defaultChecked onCheckedChange={onIsPaidChange} />
                         </div>
                         <div className="nflex njustify-end">
-                            <Button className="!nbg-rose-400 hover:!nbg-rose-500" type="submit" variant={"secondary"} >
+                            <Button  type="submit" variant={"default"} >
                                 Create
                             </Button>
                         </div>

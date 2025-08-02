@@ -1,20 +1,22 @@
-
 interface BadgeProp {
-    background?: string,
-    children: React.ReactNode,
-    primary?: boolean,
+  background?: string;
+  children: React.ReactNode;
 }
 
-const Badge = ({ background, primary, children }: BadgeProp) => {
-    return (
-        <div>
-            {
-                children &&
-                <span className={`nbadge nwhitespace-nowrap ntext-sm nrounded-full ninline-block npx-3 npy-0.5  ${primary ? 'nbg-rose-400' : 'nbg-green-400'}`} style={{ background: background }}>{children}</span>
-            }
+const Badge = ({ background, children }: BadgeProp) => {
+  return (
+    <div>
+      {children && (
+        <span
+          className={`ntext-xs nfont-medium nrounded-full npx-3 npy-0.5 ninline-block ntext-white nbg-brand 
+            nshadow-sm`}
+          style={background ? { background } : {}}
+        >
+          {children}
+        </span>
+      )}
+    </div>
+  );
+};
 
-        </div>
-    )
-}
-
-export default Badge
+export default Badge;

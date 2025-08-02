@@ -204,86 +204,70 @@ const ViewSubject = () => {
                             <Heading className='nfont-bold' text={topics?.length} />
                         </div>
 
-                        <div className='ngrid  lg:ngrid-cols-2 ngap-4 nmt-4  npx-4 npy-2'>
-                            <Each of={topics} render={(item) => <div>
-                                <div className='nbg-secondary nmin-w-[360px]' key={item?._id}>
+                       <div className="ngrid ngap-6 ngrid-cols-1 md:ngrid-cols-2 xl:ngrid-cols-3 nmt-6">
+  <Each of={topics} render={(item, index) => (
+    <div key={item._id} className="nbg-secondary nrounded-xl nborder nborder-border nshadow-md npx-4 npy-3 nspace-y-4 nmin-h-[320px] nflex nflex-col">
 
-                                    <div className='nborder-b npx-4'>
+      {/* Title + Edit */}
+      <div className="nflex njustify-between nitems-center nborder-b npb-2">
+        <h2 className="ntext-lg nfont-semibold ntext-foreground">Topic: {item.title}</h2>
+        <ToolTip title="Edit Topic">
+          <IconButton onClick={() => onShowEditTopicDialog(item)} icon={<FaRegEdit size={16} />} />
+        </ToolTip>
+      </div>
+      {/* Meta Info */}
+      <div className="nflex nflex-wrap ngap-3 ntext-sm">
+        <div className="nflex ngap-1 nitems-center"><Label>Duration:</Label> <Badge>{item.duration} mins</Badge></div>
+        <div className="nflex ngap-1 nitems-center"><Label>Total Marks:</Label> <Badge>{item.totalMark}</Badge></div>
+        <div className="nflex ngap-1 nitems-center"><Label>Total Questions:</Label> <Badge>{item.totalQuestion}</Badge></div>
+      </div>
 
-                                        <div className=' nflex ngap-2 njustify-between nitems-center npy-2'>
-                                            <span className='ntext-lg nflex-nowrap'>
-                                                Topic {item?.title}
-                                            </span>
-                                            <div className='nflex ngap-2 nitems-center'>
-                                                <ToolTip title='Edit Topic'>
+      {/* Questions */}
+      <div className="nspace-y-6 nmax-h-[280px] noverflow-y-auto npt-3">
+        <Each of={item.questions} render={(q, i) => (
+          <div key={q._id} className="nborder nborder-muted nrounded-md np-3">
+            <div className="nflex njustify-between">
+              <div className="nflex ngap-2 nitems-start">
+                <span className="nw-6 nh-6 nflex nitems-center njustify-center ntext-sm nfont-bold nbg-muted ntext-foreground nrounded">{i + 1}</span>
+                <span className="ntext-sm nfont-medium ntext-foreground">{q.question}</span>
+              </div>
+              <div className="nflex ngap-2">
+                <ToolTip title="Edit Question">
+                  <IconButton onClick={() => onShowEditDialog(q)} icon={<FaRegEdit size={14} />} />
+                </ToolTip>
+                <ToolTip title="Delete Question">
+                  <IconButton onClick={() => onShowDeleteQuesConfirm(q._id)} icon={<IoMdTrash size={14} />} />
+                </ToolTip>
+              </div>
+            </div>
 
-                                                    <IconButton onClick={() => onShowEditTopicDialog(item)} icon={<FaRegEdit size={16} />} />
-                                                </ToolTip>
-                                            </div>
+            {/* Options */}
+            <div className="nml-8 nmt-3 nspace-y-1 ntext-sm">
+              <Each of={q.options} render={(op, idx) => (
+                <div className="nflex ngap-2" key={idx}>
+                  <span>{abcd[idx]}:</span>
+                  <span className={`${getCorrectAns(q.correctAnswer) === idx ? 'ntext-green-400' : 'ntext-muted-foreground'}`}>
+                    {op}
+                  </span>
+                </div>
+              )} />
+            </div>
 
+            {/* Explanation */}
+            <div className="nmt-2">
+              <Label>Explanation</Label>
+              <div className="nbg-background np-2 nrounded-md nborder nmt-1 ntext-sm">
+                <TextMarkDown text={q.explanation} />
+              </div>
+            </div>
+          </div>
+        )} />
+      </div>
 
+    </div>
+  )} />
+</div>
 
-                                        </div>
-                                        <div className='nflex njustify-between nmb-4'>
-
-                                            <div className=' nflex  ngap-2 njustify-center nitems-center'>
-                                                <Label>Duration : </Label>
-                                                <Badge >{item?.duration} mins</Badge>
-                                            </div>
-                                            <div className='nflex  ngap-2 njustify-center nitems-center'>
-                                                <Label>Total Mark :</Label>
-                                                <Badge >{item?.totalMark}</Badge>
-                                            </div>
-                                            <div className=' nflex  ngap-2 njustify-center nitems-center'>
-                                                <Label>Total Question:</Label>
-                                                <Badge >{item?.totalQuestion}</Badge>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-
-                                    <div className=' npx-4 npy-2 nmax-h-[360px] noverflow-auto '>
-
-                                        <Each of={item.questions} render={(q, index) =>
-                                            <div className='nflex nflex-col ngap-4 nmt-4  nitems- nmt-align-items-baseline nborder-b npb-5 '>
-                                                {/* Questions */}
-                                                <div className='nflex nitems-center ngap-4'>
-                                                    <div className='nbg-background nw-[26px]  nh-[26px] nrounded-lg nflex nitems-center njustify-center'>
-                                                        <span className='ntext-sm nfont-bold'>{index + 1}</span>
-                                                    </div>
-                                                    <div className='nflex ngap-2 nitems-center'>
-                                                        <Heading className='ntext-sm' text={q.question} />
-                                                        <div>
-
-                                                            <ToolTip title='Edit Question'>
-                                                                <IconButton onClick={() => onShowEditDialog(q)} icon={<FaRegEdit size={16} />} />
-                                                            </ToolTip>
-                                                            <ToolTip title='Delete Question'>
-                                                                <IconButton onClick={() => onShowDeleteQuesConfirm(q._id)} icon={<IoMdTrash size={16} />} />
-                                                            </ToolTip>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                {/* Options */}
-                                                <div className='nspace-y-4  nml-10 '>
-                                                    <Each of={q.options} render={(op, index) =>
-                                                        <div className='nflex ngap-4'>
-                                                            <span>{abcd[index]} :</span>
-                                                            <Heading text={op} className={`text-sm ${getCorrectAns(q.correctAnswer) === index ? 'ntext-green-400' : ''} ? 'ntext-green-400' : ''}`} />
-                                                        </div>} />
-                                                    <div className='nflex nflex-col ngap-2'>
-                                                        <Label >Explanation</Label>
-                                                        <div className='nbg-background np-2 rounded-sm'>
-                                                            <TextMarkDown text={q.explanation} />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>} />
-                                    </div>
-                                </div>
-                            </div>} />
-                        </div>
                     </div>
                     : <EmptyView title='No Result Found' />
             }

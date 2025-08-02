@@ -4,105 +4,130 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/utils/cn";
 import { Button } from "@/components/ui/button";
 import { LoginFormType } from "@/types/userType";
-import { Loader2 } from "lucide-react"
-import api from '../services'
+import { Loader2 } from "lucide-react";
+import api from "../services";
 import { NavLink, useNavigate } from "react-router-dom";
-import toast from 'react-hot-toast';
+import toast from "react-hot-toast";
 import { errorHandler } from "@/helpers/errorHandler";
+
 const Signup = () => {
-    const [isLoading, setIsLoading] = useState(false)
-    const [formData, setFormData] = useState<LoginFormType>({
-        email: '',
-        password: '',
-    })
-    const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState(false);
+  const [formData, setFormData] = useState<LoginFormType>({
+    email: "",
+    password: "",
+  });
 
+  const navigate = useNavigate();
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = event.target
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value
-        }));
-
+  const onHandleSignin = async () => {
+    setIsLoading(true);
+    try {
+      const res = await api.user.login(formData);
+      if (res.status === 200) {
+        toast.success(res.data.message);
+        navigate("/");
+      }
+    } catch (error) {
+      toast.error(errorHandler(error));
+    } finally {
+      setIsLoading(false);
     }
-    const onHandleSignin = async () => {
-        setIsLoading(true)
-        try {
-            const res = await api.user.login(formData)
+  };
 
-            if (res.status === 200) {
-                const message = res.data.message
-                toast.success(message)
-                navigate('/')
-                setIsLoading(false)
-            }
+  const handleSignInWithTransition = () => {
+    startTransition(() => {
+      onHandleSignin();
+    });
+  };
 
-        } catch (error) {
+  return (
+    <div
+  className={cn(
+    "nh-screen nw-screen nflex nitems-center njustify-center nbg-background",
+    isLoading && "npointer-events-none"
+  )}
+>
+<div className="nw-full nmax-w-[420px] nbg-secondary/60 nbackdrop-blur-sm nrounded-2xl nborder nborder-border nshadow-xl np-6">
+    <h2 className="ntext-xl nsm:text-2xl nfont-semibold ntext-foreground ntext-center">
+      Log In
+    </h2>
 
-            const message = errorHandler(error)
-            toast.error(message)
-            setIsLoading(false)
-        }
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        handleSignInWithTransition();
+      }}
+      className="nmt-6 nspace-y-5"
+    >
+      <LabelInputContainer>
+        <Label htmlFor="email">Email Address</Label>
+        <Input
+          id="email"
+          name="email"
+          type="email"
+          placeholder="john@gmail.com"
+          onChange={handleChange}
+          required
+        />
+      </LabelInputContainer>
 
+      <LabelInputContainer>
+        <Label htmlFor="password">Password</Label>
+        <Input
+          id="password"
+          name="password"
+          type="password"
+          placeholder="••••••••"
+          onChange={handleChange}
+          required
+        />
+      </LabelInputContainer>
 
-    }
-    const handleSignInWithTransition = () => {
-        startTransition(() => {
-            onHandleSignin();
-        });
-    };
-    return (
+      <Button
+        type="submit"
+        disabled={isLoading}
+        className="nw-full nflex nitems-center njustify-center !nbg-background !ntext-primary"
+      >
+        {isLoading && <Loader2 className="nmr-2 nh-4 nw-4 nanimate-spin" />}
+        Log In
+      </Button>
 
-        <div className={`n${isLoading ? 'pointer-events-none' : ''} nh-screen w-screen   nmt-6 nflex nitems-center njustify-center`}>
+      <p className="ntext-muted-foreground ntext-center ntext-sm">
+        Don&apos;t have an account?{" "}
+        <NavLink
+          to="/register"
+          className="ntext-primary nhover:underline nml-1"
+        >
+          Sign Up
+        </NavLink>
+      </p>
+    </form>
+  </div>
+</div>
 
-            <div className="nw-[420px] nbg-secondary  nrounded-none nmd:rounded-2xl np-4 nmd:p-8 nshadow-input  nitems-center">
-
-                <h2 className="nfont-bold ntext-xl ntext-neutral-200">
-                    Log In
-                </h2>
-                <div className="nmy-8">
-                    <LabelInputContainer className="nmy-4">
-                        <Label htmlFor="email">Email Address</Label>
-                        <Input id="email" onChange={handleChange} name="email" placeholder="john@gmail.com" type="email" />
-                    </LabelInputContainer>
-                    <LabelInputContainer className="nmb-4">
-                        <Label htmlFor="password">Password</Label>
-                        <Input id="password" onChange={handleChange} name="password" placeholder="••••••••" type="password" />
-                    </LabelInputContainer>
-
-                    <Button disabled={isLoading} onClick={handleSignInWithTransition} className="nw-full ncursor-pointer !ntext-primary !nbg-background ">
-                        {
-                            isLoading && <Loader2 className="nmr-2 nh-4 nw-4 nanimate-spin" />
-                        }
-
-                        Log In
-                    </Button>
-                    <p className="ntext-forground ntext-center nmt-4 ntext-xs">Don't Have A Account? <span className="ntext-brand"> <NavLink to="/register">Sign Up</NavLink> </span></p>
-
-
-                </div>
-            </div>
-        </div>
-    );
-}
-
-export default Signup
-
-const LabelInputContainer = ({
-    children,
-    className,
-}: {
-    children: React.ReactNode;
-    className?: string;
-}) => {
-    return (
-        <div className={cn("nflex nflex-col nspace-y-2 nw-full", className)}>
-            {children}
-        </div>
-    );
+  );
 };
 
+export default Signup;
 
-
+const LabelInputContainer = ({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) => {
+  return (
+    <div className={cn("nflex nflex-col nspace-y-2", className)}>
+      {children}
+    </div>
+  );
+};
